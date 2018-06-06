@@ -7,6 +7,13 @@ public class Die {
     }
 
     public int getValue(){
-        return -1;
+        return value;
+
     }
+
+    public  int rollADice() {
+        int rolled = (int)(Math.random()* 6)+ 1;
+        return value = rolled;
+    }
+
 }
