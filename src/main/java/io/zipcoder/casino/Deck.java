@@ -1,6 +1,6 @@
 package io.zipcoder.casino;
 
-public class DeckOfCards {
+public class Deck {
     Card[] setOfCard = new Card[52];
 
     public void drawCard(){

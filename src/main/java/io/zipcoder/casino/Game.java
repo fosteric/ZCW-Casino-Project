@@ -7,7 +7,7 @@ public interface Game {
  boolean winner = false;
 
 
-    public boolean playGame();
+    public boolean playGame(Player aPlayer);
 }
 
 

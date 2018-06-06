@@ -1,6 +1,6 @@
 package io.zipcoder.casino;
 
-public class SetOfDice {
+public class Dice {
 
     Die aDie = new Die();
 

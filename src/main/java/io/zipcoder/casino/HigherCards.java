@@ -2,7 +2,7 @@ package io.zipcoder.casino;
 
 public class  HigherCards extends CardGame implements Gambling{
 
-    public boolean playGame() {
+    public boolean playGame(Player aPlayer) {
         return false;
     }
 

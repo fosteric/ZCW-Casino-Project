@@ -4,10 +4,9 @@ package io.zipcoder.casino;
 public class Casino {
     Console aConsole = new Console();
     Player aPlayer = new Player();
-    Croupier aCroupier = new Croupier();
+    Table aTable = new Table();
 
     public void setaPlayer(){
-
 
     }
 
