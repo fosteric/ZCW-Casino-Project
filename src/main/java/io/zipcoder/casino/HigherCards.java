@@ -24,3 +24,4 @@ public class  HigherCards extends CardGame implements Gambling{
         return 0;
     }
 }
+
