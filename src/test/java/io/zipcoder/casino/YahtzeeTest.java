@@ -6,60 +6,24 @@ import org.junit.Test;
 
 public class YahtzeeTest {
 
-    /**
-     * The test class DieTest.
-     */
 
-    Dice dice = new Dice();
-    Die[] diceRoll;
-
-    /**
-     * Default constructor for test class DiceTest
-     */
-    public YahtzeeTest()
-    {
-    }
-
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
-    @Before
-    public void setUp()
-    {
-    }
+    Dice diceRoller = new Dice(5);
+    Die[] dice;
 
     @Test
-    public void rollADiceTest(){
-        //Given
+    public void rollAllDiceTest(){
 
-        //When
-        int actual = 3;
-        int expected = test.rollADice();
+        //given
+        
+
+        //expected
+
+
+        //actual
+
         //Result
-        assertEquals(actual, expected,3);
+        assertEquals(actual, expected);
     }
 
-    @Test
-    public void rollADiceTest2(){
-        //Given
-
-        //When
-        int actual = 2;
-        int expected = test.rollADice();
-        //Result
-        assertEquals(actual, expected,4);
-    }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    @After
-    public void tearDown()
-    {
-    }
 }
 
