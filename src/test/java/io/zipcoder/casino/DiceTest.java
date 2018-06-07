@@ -10,7 +10,7 @@ import org.junit.Test;
      */
     public class DiceTest
     {
-        Dice test = new Dice();
+        Dice test = new Dice(5);
         /**
          * Default constructor for test class DiceTest
          */
@@ -29,12 +29,17 @@ import org.junit.Test;
         }
 
         @Test
-        public void rollTest(){
+        public void rollAllTest(){
             //Given
-            int roll = 5;
+            test.rollAll();
+            int sum = 0;
+
+            for(int i = 0; i< test.getDice().length; i++){
+                sum+= test.getDice()[i].getValue();
+            }
             //When
             int actual = 5;
-            int expected = test.roll(roll);
+            int expected = sum;
             //Result
             assertEquals(actual, expected, 20);
         }
