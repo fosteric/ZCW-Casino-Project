@@ -14,8 +14,7 @@ public class Card {
     public void setRank(){
     }
 
-    public Rank getRank(){
-        return Rank.ACE;
+    public Rank getRank(){ return Rank.ACE;
     }
 
 }
