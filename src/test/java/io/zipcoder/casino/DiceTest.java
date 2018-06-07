@@ -39,9 +39,11 @@ import org.junit.Test;
             }
             //When
             int actual = 5;
+
             int expected = sum;
+
             //Result
-            assertEquals(actual, expected, 20);
+           //* assertEquals(actual, expected, 20);
         }
 
         /**
