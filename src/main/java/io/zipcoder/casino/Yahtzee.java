@@ -5,7 +5,7 @@ public class Yahtzee extends DiceGame {
 
     Console console = new Console();
     Map<YahtzeeFields, Integer> scoreSheet = new HashMap<YahtzeeFields, Integer>();
-    Dice dice = new Dice();
+    Dice dice = new Dice(5);
     Die[] diceRoll;
     Player aPlayer;
 
