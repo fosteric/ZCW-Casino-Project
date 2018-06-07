@@ -15,6 +15,9 @@ public class Deck {
         }
 
         Collections.shuffle(deck);
+    }
+
+    public void lookThroughDeck() {
 
         Iterator cardIterator = deck.iterator();
         while (cardIterator.hasNext()) {
@@ -25,21 +28,9 @@ public class Deck {
     }
 
 
+    public ArrayList drawCard() {
+        
+    }
+
 }
-
-
-//    Deck[] deck = new Deck[52];
-//
-//
-//
-//
-//
-//
-//
-//    public String drawCard() {
-//        return Card.getRank() + "of " + Card.getSuit();
-//    }
-//
-//    public void shuffle() {
-//    }
 

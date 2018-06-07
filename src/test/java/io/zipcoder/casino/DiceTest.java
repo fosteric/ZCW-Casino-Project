@@ -38,10 +38,12 @@ import org.junit.Test;
                 sum+= test.getDice()[i].getValue();
             }
             //When
+
             int actual = sum;
             int expected = 17;
             //Result
             assertEquals(actual, expected, 13);
+
         }
 
         /**
