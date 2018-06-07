@@ -19,6 +19,7 @@ public class Console {
         return userInput2;
     }
 
+
     /*public static Integer getIntegerInput(String prompt) {
     return null;
     }*/

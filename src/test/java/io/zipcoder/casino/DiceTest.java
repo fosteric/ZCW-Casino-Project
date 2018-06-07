@@ -29,15 +29,17 @@ import org.junit.Test;
         }
 
         @Test
-        public void rollTest(){
+        public void rollAllTest(){
             //Given
             test.rollAll();
-            for(int i = 0; i< test.getDice().length; i++){
+            int sum = 0;
 
+            for(int i = 0; i< test.getDice().length; i++){
+                sum+= test.getDice()[i].getValue();
             }
             //When
-            Die[] actual = ;
-            Die[] expected = ;
+            int actual = 5;
+            int expected = sum;
             //Result
             assertEquals(actual, expected, 20);
         }
