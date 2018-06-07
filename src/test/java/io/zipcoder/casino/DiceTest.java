@@ -10,7 +10,7 @@ import org.junit.Test;
      */
     public class DiceTest
     {
-        Dice test = new Dice();
+        Dice test = new Dice(5);
         /**
          * Default constructor for test class DiceTest
          */
