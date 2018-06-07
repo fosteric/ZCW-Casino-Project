@@ -6,7 +6,11 @@ public class Table {
     Game aGame;
     Player aPlayer;
 
-    public void startGame(Player aPlayer){
+    public Table(Player aPlayer){
+
+    }
+
+    public void startGame(){
 
     }
 }
