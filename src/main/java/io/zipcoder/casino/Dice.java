@@ -1,21 +1,28 @@
 package io.zipcoder.casino;
 
 public class Dice {
+    Die[] dice;
 
-    Die aDie = new Die();
-    
+    public Dice(int numberOfDice) {
 
-    /**
-     * Rolls N number of dice
-     */
-    public int roll(int numberOfDice)
-    {
-        int rolledDice= 0;
 
-        for(int i = 0; i<numberOfDice; i++)
-            rolledDice+= (aDie.rollADice());
+     dice = new Die[numberOfDice];
+}
 
-        return rolledDice;
+    public Die[] getDice(){
+        return dice;
     }
+
+    public Die[] rollAll() {
+
+
+        for (int i = 0; i < dice.length; i++){
+             dice[i].rollADice();
+
+        }
+        return dice;
+    }
+
+
 
 }
