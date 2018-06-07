@@ -7,11 +7,11 @@ public class Table {
     Player aPlayer;
 
     public Table(Player aPlayer){
-
+        this.aPlayer = aPlayer;
     }
 
     public void startGame(){
-
+       
     }
 }
 

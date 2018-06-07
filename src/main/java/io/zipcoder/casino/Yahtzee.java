@@ -7,8 +7,13 @@ public class Yahtzee extends DiceGame {
     Map<YahtzeeFields, Integer> scoreSheet = new HashMap<YahtzeeFields, Integer>();
     Dice dice = new Dice();
     Die[] diceRoll;
+    Player aPlayer;
 
-    public boolean playGame(Player aPlayer) {
+    public Yahtzee(Player aPlayer){
+        this.aPlayer = aPlayer;
+    }
+
+    public boolean playGame() {
         //roll dice (1)
             //roll all 5 dice
         //See current dice

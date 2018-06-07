@@ -6,8 +6,7 @@ public interface Game {
  int houseScore = 0;
  boolean winner = false;
 
-
-    public boolean playGame(Player aPlayer);
+    public boolean playGame();
 }
 
 
