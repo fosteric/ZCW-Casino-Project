@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import io.zipcoder.casino.Leviathan.Games.*;
 import io.zipcoder.casino.Leviathan.*;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.*;
 
 /**
  * The test class HigherDiceTest.
@@ -29,23 +30,35 @@ public class HigherDiceTest {
     {
     }
 
-    /**    @Test
+    @Test
     public void wageMoneyTest(){
         //Given
-        test.wageMoney().;
-        int sum = 0;
+        test.wageMoney();
+        int sum = 1;
 
-        for(int i = 0; i< test.getDice().length; i++){
-            sum+= test.getDice()[i].getValue();
-        }
         //When
-
         int actual = sum;
         int expected = 17;
+
         //Result
         assertEquals(actual, expected, 13);
 
-    }*/
+    }
+
+    @Test
+    public void findWinnerTest(){
+        //Given
+        test.wageMoney();
+        int sum = 0;
+
+        //When
+        int actual = sum;
+        int expected = 17;
+
+        //Result
+        assertEquals(actual, expected, 13);
+
+    }
 
     /**
      * Tears down the test fixture.
