@@ -18,7 +18,8 @@ public class  HigherCards extends CardGame implements Gambling{
         wageAmount=wageMoney();
         int player=10;
         int croupier=2;
-
+        //Card acard = new Card(Rank.TEN,Suit.SPADES);
+         //card=acard.getRank();
         totalChips=aPlayer.getTotalChips();
         int newTotalChips=findWinner(player,croupier,wageAmount,totalChips);
         if(newTotalChips>totalChips)
