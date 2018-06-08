@@ -1,6 +1,6 @@
 package io.zipcoder.casino.Leviathan.Games.GameUtilities;
 
-public enum YahtzeeFields {
+public enum YahtzeeField {
     ACES,
     TWOS,
     THREES,

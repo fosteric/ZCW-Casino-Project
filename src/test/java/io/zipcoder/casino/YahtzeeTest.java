@@ -5,63 +5,33 @@ import org.junit.Before;
 import org.junit.Test;
 import io.zipcoder.casino.Leviathan.Games.GameUtilities.*;
 import io.zipcoder.casino.Leviathan.*;
+import io.zipcoder.casino.Leviathan.Games.*;
 
 public class YahtzeeTest {
 
-    /**
-     * The test class DieTest.
-     */
+    Console console = new Console();
+    Player aPlayer;
+    Yahtzee yahtzee;
+    Dice diceRoller;
+    Die[] dice;
 
-    Dice dice = new Dice();
-    Die[] diceRoll;
-
-    /**
-     * Default constructor for test class DiceTest
-     */
-    public YahtzeeTest()
-    {
-    }
-
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
-    @Before
-    public void setUp()
-    {
+    public YahtzeeTest(){
+        aPlayer = new Player("eric", 20);
+        yahtzee = new Yahtzee(aPlayer);
+        diceRoller = new Dice(5);
     }
 
     @Test
-    public void rollADiceTest(){
-        //Given
-
-        //When
-        int actual = 3;
-        int expected = test.rollADice();
-        //Result
-        assertEquals(actual, expected,3);
+    public void displayDice(){
+        yahtzee.displayDice();
     }
 
     @Test
-    public void rollADiceTest2(){
-        //Given
+    public void rollSelectDice(){
 
-        //When
-        int actual = 2;
-        int expected = test.rollADice();
-        //Result
-        assertEquals(actual, expected,4);
     }
 
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    @After
-    public void tearDown()
-    {
-    }
+
+
 }
 

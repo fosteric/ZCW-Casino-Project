@@ -17,20 +17,24 @@ public class Deck {
         Collections.shuffle(deck);
     }
 
-    public void lookThroughDeck() {
+//    public void lookThroughDeck() {
+//
+//        Iterator cardIterator = deck.iterator();
+//        while (cardIterator.hasNext()) {
+//            Card card = (Card) cardIterator.next();
+//            System.out.println(card.getRank() + " of " + card.getSuit());
+//        }
+//
+//    }
 
-        Iterator cardIterator = deck.iterator();
-        while (cardIterator.hasNext()) {
-            Card card = (Card) cardIterator.next();
-            System.out.println(card.getRank() + " of " + card.getSuit());
-        }
 
+    public Card drawCard() {
+
+//        String yourCard = Card.getRank() + " of " + Card.getSuit();
+
+//        return yourCard;
+        return null;
     }
-
-
-    //public ArrayList drawCard() {
-        
-    //}
 
 }
 
