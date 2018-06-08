@@ -6,6 +6,7 @@ import java.util.Collections;
 
 public class Deck {
 
+
     public void shuffle() {
         Collections.shuffle(deck);
 
@@ -18,29 +19,23 @@ public class Deck {
         for (Rank rank : Rank.values()) {
             for (Suit suit : Suit.values()) {
                 deck.add(new Card(rank, suit));
+
             }
         }
 
         shuffle();
     }
 
-    public Deck draw() {
-        return (Deck) deck.remove(deck.size() - 1);
+    public ArrayList getDeck(){
+        return deck;
     }
 
 
+    public Object draw() {
+        return deck.remove(deck.size() - 1);
 
 
-
-
-
-//    public Card drawCard() {
-//
-//        String yourCard = Card.(rank) + " of " + Card.getSuit();
-//
-//        return yourCard;
-//        return null;
-//    }
+    }
 
 }
 
