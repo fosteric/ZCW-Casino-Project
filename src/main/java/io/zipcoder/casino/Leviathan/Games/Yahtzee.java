@@ -26,29 +26,48 @@ public class Yahtzee extends DiceGame {
 
     public void playGame() {
 
-        rollDice();
+        createNewScoreSheet();
 
-        rollAgainLoop();
+        boolean scoreSheetFull = checkScoreSheetForCompletion();
 
-        YahtzeeField fieldChoice = chooseYahtzeeField();
-        scoreDice(fieldChoice);
+        while (!scoreSheetFull) {
+            rollDice();
 
+            rollAgainLoop();
 
-        //roll remaining dice (2)
-        //If use roll, select a field
-        //See current dice
-        //Use roll or roll again?
-        //If roll again, select which dice to keep
-        //roll remaining dice (3)
-        //If use roll, select a field
-        //See current dice
-        //Select a field
+            YahtzeeField fieldChoice = chooseYahtzeeField();
+            scoreDice(fieldChoice);
 
-        //other things you might want to do..
-        //See fields and scoring formula
-        //see current score sheet
-        //quit game
+            //other things you might want to do..
+            //See fields and scoring formula
+            //see current score sheet
+            //quit game
+        }
     }
+
+
+    /*
+    Create new score sheet
+     */
+    public void createNewScoreSheet(){
+
+    }
+
+    /*
+    Check score sheet for completion
+     */
+    public boolean checkScoreSheetForCompletion(){
+
+        for(Map.Entry<YahtzeeField, Integer> entry : scoreSheet.entrySet()){
+            Integer value = entry.getValue();
+            if (value == null){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     /*
     Roll dice
@@ -101,13 +120,14 @@ public class Yahtzee extends DiceGame {
         boolean rollAgain = userInputRollAgainBoolean(rollAgainString);
 
         int rollCounter = 1;
-        while (rollAgain && rollCounter <= 3) {
+        while (rollCounter <= 3 && rollAgain) {
             //select the dice to keep
             Integer[] diceToRollAgain = userInputChooseDice();
             //roll remaining dice
             rollSelectedDiceAgain(diceToRollAgain);
             printDice();
             rollCounter++;
+            if (rollCounter >=3){break;}
 
             rollAgainString = userInputRollAgain();
             rollAgain = userInputRollAgainBoolean(rollAgainString);
