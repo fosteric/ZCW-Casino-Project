@@ -27,6 +27,7 @@ public class YahtzeeTest {
 
     @Test
     public void rollSelectedDiceAgainTest(){
+        yahtzee.displayDice();
         yahtzee.rollSelectedDiceAgain(3,5);
         yahtzee.displayDice();
     }

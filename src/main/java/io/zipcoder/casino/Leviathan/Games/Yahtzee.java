@@ -105,8 +105,8 @@ public class Yahtzee extends DiceGame {
 
 
     public void rollSelectedDiceAgain(Integer... diceToRollAgain) {
-        for (Integer position : diceToRollAgain) {
-            dice[diceToRollAgain[position]].rollADice();
+        for (int i = 0; i < diceToRollAgain.length; i++) {
+            dice[diceToRollAgain[i]-1].rollADice();
         }
     }
 
