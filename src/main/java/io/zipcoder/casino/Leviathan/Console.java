@@ -25,11 +25,11 @@ public class Console {
     }*/
 
     public  Integer getIntInput(String prompt) {
-        Scanner scannerB = new Scanner(System.in);
         int b = 0;
         boolean good =false;
         println(prompt);
         while(good == false) {
+            Scanner scannerB = new Scanner(System.in);
             if (scannerB.hasNextInt()) {
                 b = scannerB.nextInt();
                 good = true;

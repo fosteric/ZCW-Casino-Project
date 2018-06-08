@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import io.zipcoder.casino.Leviathan.Games.*;
 import io.zipcoder.casino.Leviathan.*;
-import io.zipcoder.casino.Leviathan.Games.GameUtilities.*;
 
 /**
  * The test class HigherDiceTest.
