@@ -1,12 +1,15 @@
 package io.zipcoder.casino.Leviathan.Games;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.Die;
 import io.zipcoder.casino.Leviathan.Interfaces.*;
 import io.zipcoder.casino.Leviathan.*;
+
 
 public class HigherDice extends DiceGame implements Gambling {
     Console aConsole = new Console();
     int bet;
     int totalChips;
     Player aPlayer;
+    Die aDie = new Die();
 
     public HigherDice(Player aPlayer) {
         this.aPlayer = aPlayer;
@@ -16,15 +19,10 @@ public class HigherDice extends DiceGame implements Gambling {
 
         Boolean result;
         bet = wageMoney();
-        int player = 0;
-        int croupier = 0;
-
-        /*
-
-        Rank.
-
-        */
+        int player = aDie.rollADice();
+        int croupier = aDie.rollADice();
         totalChips = aPlayer.getTotalChips();
+
         int newTotalChips = findWinner(player, croupier, bet, totalChips);
         aPlayer.setTotalChips(newTotalChips);
         if (newTotalChips > totalChips) {
@@ -50,9 +48,7 @@ public class HigherDice extends DiceGame implements Gambling {
         return totalChips;
     }
 
-
     public int wageMoney() {
-        int bet;
 
         do {
             bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
