@@ -1,22 +1,13 @@
 package io.zipcoder.casino;
 
+import io.zipcoder.casino.Leviathan.Games.HigherCards;
+import io.zipcoder.casino.Leviathan.Player;
 import org.junit.Assert;
->>>>>>> dev
 import org.junit.Test;
+
 
 public class HigherCardsTest {
     @Test
-<<<<<<< HEAD
-    public void testHigherClassTest()
-    {
-        Boolean expected=true;
-        HigherCards h=new HIgherCards();
-        Player player =new Player();
-        Boolean actual=h.playGame(player);//?
-
-    }
-}
-=======
     public void testFindAWinner()
     {
         Player aplayer =new Player("Aleena",2000);
