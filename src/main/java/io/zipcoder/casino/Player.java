@@ -4,6 +4,12 @@ public class Player {
     String name;
     Integer totalChips;
 
+    public Player(String name, Integer totalChips){
+        this.name = name;
+        this.totalChips = totalChips;
+
+    }
+
     public void setName(String name){
         this.name = name;
     }

@@ -18,37 +18,52 @@ public class BlackJack extends CardGame implements Gambling{
 
     public void blackJack (String[] args){
 
+        //user input for Int
+        int betAmount = 0;
+
+        //user input for String
+        String decision;
+
+
+        Console aConsole = new Console();
+
+
+        ////////public int startTheGame(int playerScore, int houseScore, int getRank)
+
+
+
         playerScore = Card.getRank() + Card.getRank();
 
         houseScore = Card.getRank() + Card.getRank();
 
 
 
-        while(!HOLD_CONSTANT.equals(Console.getInput()) || playerScore < 21) {
+        while(!HOLD_CONSTANT.equals(decision) || playerScore < 21) {
 
             //IF statement that asks for userInput after each loop(?)
             //add sum values of two cards to playerScore hand
             //add sum values of two cards to houseScore hand
 
-            Console.getInput();
+           decision = aConsole.getStringInput("Please make a call:\nHit\nStand");
 
-            If(Console.getInput().equals("Hit")) {
 
-                If(Card.getRank().equals("Ace") && playerScore > 10) {
+            If(decision.equals("Hit")) {
+
+                If(decision.equals("Ace") && playerScore > 10) {
                     playerScore + 1;
                 }
                 else{
                     playerScore + 11;
                 }
             }
-            else if(Console.getInput().equals("Stand"))
+            else if(aConsole.getStringInput().equals("Stand"))
 
 
 
     }
 
     If(playerScore > 21){
-            //Use console to printOut "Bust"
+
         }
 
 
