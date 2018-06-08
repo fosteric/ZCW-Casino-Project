@@ -1,8 +1,11 @@
 package io.zipcoder.casino;
 import static org.junit.Assert.*;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.Die;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+
 
 public class DieTest {
     /**

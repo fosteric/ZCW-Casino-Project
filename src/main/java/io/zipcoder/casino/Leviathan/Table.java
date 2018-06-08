@@ -20,11 +20,12 @@ public class Table {
         aConsole.println("1.Higher Dice\n2.Higher Card\n3.Black Jack\n4.Yahtzee\n");
 
         int choice=aConsole.getIntInput("Enter your choice");
-        if(choice==1)
+        if(choice==1)//Higher Dice
         {
-
+            HigherDice higherDice=new HigherDice (aPlayer);
+            higherDice.playGame();
         }
-        else if(choice==2)
+        else if(choice==2)//Higher Cards
         {
             HigherCards higherCards=new HigherCards(aPlayer);
             higherCards.playGame();

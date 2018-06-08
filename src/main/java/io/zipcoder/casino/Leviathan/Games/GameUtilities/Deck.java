@@ -1,8 +1,15 @@
 package io.zipcoder.casino.Leviathan.Games.GameUtilities;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+
 
 public class Deck {
+
+    public void shuffle() {
+        Collections.shuffle(deck);
+
+    }
 
     private ArrayList deck;
 
@@ -14,27 +21,26 @@ public class Deck {
             }
         }
 
-        Collections.shuffle(deck);
+        shuffle();
     }
 
-//    public void lookThroughDeck() {
+    public Deck draw() {
+        return (Deck) deck.remove(deck.size() - 1);
+    }
+
+
+
+
+
+
+
+//    public Card drawCard() {
 //
-//        Iterator cardIterator = deck.iterator();
-//        while (cardIterator.hasNext()) {
-//            Card card = (Card) cardIterator.next();
-//            System.out.println(card.getRank() + " of " + card.getSuit());
-//        }
+//        String yourCard = Card.(rank) + " of " + Card.getSuit();
 //
-//    }
-
-
-    public Card drawCard() {
-
-//        String yourCard = Card.getRank() + " of " + Card.getSuit();
-
 //        return yourCard;
-        return null;
-    }
+//        return null;
+//    }
 
 }
 
