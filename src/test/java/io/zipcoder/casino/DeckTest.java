@@ -1,6 +1,7 @@
 package io.zipcoder.casino;
 
 import static org.junit.Assert.*;
+
 import io.zipcoder.casino.Leviathan.Games.GameUtilities.Card;
 import io.zipcoder.casino.Leviathan.Games.GameUtilities.Deck;
 import io.zipcoder.casino.Leviathan.Games.GameUtilities.Rank;
@@ -35,13 +36,11 @@ public class DeckTest {
     }
 
     @Test
-    public void drawTest1() {
-//       //Given
-//
-// Card acard = new Card(Rank.TEN,Suit.SPADES);
+    public void drawTest() {
+
 
         //When
-        Deck card = deck.draw();
+        Object card = deck.draw();
         Card ten = new Card(Rank.TEN, Suit.SPADES);
         //Result
 
@@ -49,18 +48,18 @@ public class DeckTest {
         assertNotNull(ten.getSuit());
     }
 
-//    @Test
-//    public void drawTest2() {
-//        //Given
-//
-//        //When
-//
-//        Suit expected = Card.getSuit();
-//        Enum actual = SPADES;
-//        //Result
-//        assertEquals(actual, expected);
-//    }
+    @Test
+    public void removeTest() {
 
+
+        //When
+
+        //Result
+
+
+
+
+    }
 
     /**
      * Tears down the test fixture.
