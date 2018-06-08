@@ -3,6 +3,7 @@ package io.zipcoder.casino;
 public class Dice {
     Die[] dice;
 
+
     public Dice(int numberOfDice) {
 
 
