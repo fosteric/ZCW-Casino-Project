@@ -1,77 +1,94 @@
 package io.zipcoder.casino;
+
 import java.util.*;
 
 public class Yahtzee extends DiceGame {
 
     Console console = new Console();
-    Map<YahtzeeFields, Integer> scoreSheet = new HashMap<YahtzeeFields, Integer>();
+    Map<YahtzeeField, Integer> scoreSheet = new HashMap<YahtzeeField, Integer>();
     Dice diceRoller;
     Die[] dice;
     Player aPlayer;
 
-    public Yahtzee(Player aPlayer){
+    public Yahtzee(Player aPlayer) {
         this.aPlayer = aPlayer;
         diceRoller = new Dice(5);
+        dice = diceRoller.rollAll();
     }
 
     public boolean playGame() {
-        //roll dice (1)
-            //roll all 5 dice
-        dice = rollAllDice();
-        //See current dice
+        dice = diceRoller.rollAll();
         displayDice();
-        //Use roll or roll again?
-            //If roll again, select which dice to keep
-                //roll remaining dice (2)
-            //If use roll, select a field
+        boolean rollAgain = chooseToRollAgain();
+        if (rollAgain) {
+            rollSelectDice();
+        } else {
+            YahtzeeField fieldChoice = chooseYahtzeeField();
+            scoreDice(fieldChoice);
+        }
+        //roll remaining dice (2)
+        //If use roll, select a field
         //See current dice
         //Use roll or roll again?
-            //If roll again, select which dice to keep
-                //roll remaining dice (3)
-            //If use roll, select a field
+        //If roll again, select which dice to keep
+        //roll remaining dice (3)
+        //If use roll, select a field
         //See current dice
         //Select a field
 
         //other things you might want to do..
-            //See fields and scoring formula
-            //see current score sheet
-            //quit game
+        //See fields and scoring formula
+        //see current score sheet
+        //quit game
 
 
         return false;
     }
 
-    public Die[] rollAllDice(){
-        return diceRoller.rollAll();
-    }
-
-    public void rollSelectDice(int... diePosition){
-        for (int i = 0; i < diePosition.length; i++){
-            dice[diePosition[i]].rollADice();
-        }
-    }
-
-    public void displayDice(){
+    public void displayDice() {
         StringBuilder currentDice = new StringBuilder();
-        for(int i = 0; i<dice.length; i++){
+        for (int i = 0; i < dice.length; i++) {
             currentDice.append(dice[i].getValue());
-            if(i<dice.length-1) {
+            if (i < dice.length - 1) {
                 currentDice.append(", ");
             }
         }
         console.println("current roll: " + currentDice.toString());
     }
 
-    public int scoreRoll(YahtzeeFields yahtzeeField){
-        //take in field and dice array and give a score
-        return -1;
+    public boolean chooseToRollAgain() {
+        String rollAgain = aConsole.getStringInput
+                ("Roll again or score dice?").toUpperCase();
+        boolean rollAgainChoice;
+        if (rollAgain.equals("ROLL AGAIN")) {
+            rollAgainChoice = true;
+        } else {
+            rollAgainChoice = false;
+        }
+        return rollAgainChoice;
     }
 
-    public void updateScoreSheet(YahtzeeFields yahtzeeField, int score){
+    public void rollSelectDice(int... diePosition) {
+        for (int i = 0; i < diePosition.length; i++) {
+            dice[diePosition[i]].rollADice();
+        }
+    }
+
+    public YahtzeeField chooseYahtzeeField() {
+        String userInput = aConsole.getStringInput
+                ("Which field do you want to score?").toUpperCase();
+        return YahtzeeField.ACES;
+    }
+
+    public void scoreDice(YahtzeeField yahtzeeField) {
+        //take in field and dice array and give a score
+    }
+
+    public void updateScoreSheet(YahtzeeField yahtzeeField, int score) {
         //Take in field and score and update sheet
     }
 
-    public void displayScoreSheet(){
+    public void displayScoreSheet() {
         //print score sheet
     }
 

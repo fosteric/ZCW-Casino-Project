@@ -1,6 +1,6 @@
 package io.zipcoder.casino;
 
-public enum YahtzeeFields {
+public enum YahtzeeField {
     ACES,
     TWOS,
     THREES,
