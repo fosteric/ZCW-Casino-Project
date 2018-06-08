@@ -3,7 +3,7 @@ package io.zipcoder.casino;
 public class BlackJack extends CardGame implements Gambling{
 
 
-    public boolean playGame(Player aPlayer) {
+    public boolean playGame() {
         return false;
     }
 
