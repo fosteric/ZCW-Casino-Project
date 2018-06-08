@@ -16,13 +16,14 @@ public enum Rank {
     TWO(2);
 
 
-    private int rank;
+    private int value;
 
-    Rank(int value) {
-        this.rank = value;
-    }
+   private Rank(int value)
+   {
+       this.value=value;
+   }
 
-    public int getRank() {
-        return rank;
+    public int getValue() {
+        return this.value;
     }
 }
