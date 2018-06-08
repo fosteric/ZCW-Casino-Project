@@ -11,9 +11,9 @@ public class Die {
 
     }
 
-    public  int rollADice() {
+    public  void rollADice() {
         int rolled = (int)(Math.random()* 6)+ 1;
-        return value = rolled;
+        value = rolled;
     }
 
 }
