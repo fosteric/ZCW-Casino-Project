@@ -51,10 +51,11 @@ public class Table {
         else
         {
             aConsole.println("You Lose");
+
         }
 
     }
-}
+
 
 
 
