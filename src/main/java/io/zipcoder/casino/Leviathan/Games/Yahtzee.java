@@ -32,7 +32,6 @@ public class Yahtzee extends DiceGame {
 
         rollAgainLoop(rollAgain);
 
-
         YahtzeeField fieldChoice = chooseYahtzeeField();
         scoreDice(fieldChoice);
 
@@ -51,9 +50,6 @@ public class Yahtzee extends DiceGame {
         //See fields and scoring formula
         //see current score sheet
         //quit game
-
-
-        return false;
     }
 
     /*
@@ -92,7 +88,7 @@ public class Yahtzee extends DiceGame {
         boolean rollAgain;
         if (userInputString.equals("YES")) {
             rollAgain = true;
-        } else if {
+        } else {
             rollAgain = false;
         }
         return rollAgain;
@@ -101,7 +97,7 @@ public class Yahtzee extends DiceGame {
     /*
     Allow the user to roll again up to 2 more times
      */
-    public void rollAgainLoop(boolean rollAgain){
+    public void rollAgainLoop(boolean rollAgain) {
 
         int rollCounter = 1;
         while (rollAgain && rollCounter <= 3) {
@@ -112,6 +108,7 @@ public class Yahtzee extends DiceGame {
             printDice();
             rollCounter++;
         }
+    }
 
     /*
     Ask user to select which dice to roll again
