@@ -6,6 +6,7 @@ import java.util.Collections;
 
 public class Deck {
 
+
     public void shuffle() {
         Collections.shuffle(deck);
 
@@ -23,6 +24,10 @@ public class Deck {
         }
 
         shuffle();
+    }
+
+    public ArrayList getDeck(){
+        return deck;
     }
 
 
