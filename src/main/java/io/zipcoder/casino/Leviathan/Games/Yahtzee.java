@@ -23,7 +23,8 @@ public class Yahtzee extends DiceGame {
         displayDice();
         boolean rollAgain = chooseToRollAgain();
         if (rollAgain) {
-            rollSelectDice();
+            getSelectDiceToKeep();
+            rollUnselectedDice();
         } else {
             YahtzeeField fieldChoice = chooseYahtzeeField();
             scoreDice(fieldChoice);
@@ -70,7 +71,19 @@ public class Yahtzee extends DiceGame {
         return rollAgainChoice;
     }
 
-    public void rollSelectDice(int... diePosition) {
+    public int[] getSelectDiceToKeep(){
+        int [] dicePositionsToKeep = null;
+        ArrayList<Integer> dicePositionsToKeepList = new ArrayList<Integer>();
+        boolean stillSelecting = true;
+        while (stillSelecting) {
+            Integer positionOfDiceToKeep = aConsole.getIntInput
+                    ("Enter position of dice to keep or 0 to perform roll");
+            dicePositionsToKeepList.add(positionOfDiceToKeep);
+        }
+        return dicePositionsToKeep;
+    }
+
+    public void rollUnselectedDice(int... diePosition) {
         for (int i = 0; i < diePosition.length; i++) {
             dice[diePosition[i]].rollADice();
         }

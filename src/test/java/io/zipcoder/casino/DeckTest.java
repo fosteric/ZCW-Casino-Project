@@ -1,6 +1,10 @@
 package io.zipcoder.casino;
 
 import static org.junit.Assert.*;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.Card;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.Deck;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.Rank;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.Suit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,12 +41,12 @@ public class DeckTest {
 // Card acard = new Card(Rank.TEN,Suit.SPADES);
 
         //When
-        Card card = deck.drawCard();
-       actual Card ten = new Card(Rank.TEN, Suit.SPADES);
+        Deck card = deck.draw();
+        Card ten = new Card(Rank.TEN, Suit.SPADES);
         //Result
 
-        assertNotNull(card.getRank());
-        assertNotNull(card.getSuit());
+        assertNotNull(ten.getRank());
+        assertNotNull(ten.getSuit());
     }
 
 //    @Test
