@@ -44,6 +44,9 @@ public class Table {
         if(result.equals(true))
         {
             aConsole.println("Congrats ! You Won");
+            aConsole.println("Your current available Chips");
+            String availableChips= aPlayer.getTotalChips().toString();
+            aConsole.println(availableChips);
         }
         else
         {
