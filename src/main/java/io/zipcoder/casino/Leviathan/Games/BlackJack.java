@@ -24,6 +24,7 @@ public class BlackJack extends CardGame implements Gambling {
     Deck deck = new Deck();
 
 
+
     String playerDecision;
 
 
@@ -51,7 +52,18 @@ public class BlackJack extends CardGame implements Gambling {
 
     //initial player card value
     public int startPlayerHand() {
-        return aPlayerScore = deck(Card()); //= aGetRank + aGetRank;
+
+        Card card = deck.draw();
+
+        Rank rank = card.getRank();
+
+        int cardInt =rank.getRank();
+
+        aPlayerScore = cardInt;
+
+
+
+        return aPlayerScore; //= aGetRank + aGetRank;
     }
 
     //initial house card value
