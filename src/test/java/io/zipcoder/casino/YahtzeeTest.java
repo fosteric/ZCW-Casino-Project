@@ -21,15 +21,19 @@ public class YahtzeeTest {
     }
 
     @Test
-    public void displayDice(){
-        yahtzee.displayDice();
+    public void userInputRollAgainBooleanTest(){
+        //Actual
+        boolean actual = yahtzee.userInputRollAgainBoolean("YES");
+        //Expected
+        boolean expected = true;
+        assertEquals(expected, actual);
     }
 
     @Test
     public void rollSelectedDiceAgainTest(){
-        yahtzee.displayDice();
+        yahtzee.printDice();
         yahtzee.rollSelectedDiceAgain(3,5);
-        yahtzee.displayDice();
+        yahtzee.printDice();
     }
 
 
