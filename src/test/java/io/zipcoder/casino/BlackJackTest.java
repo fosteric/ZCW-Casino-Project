@@ -1,5 +1,7 @@
 package io.zipcoder.casino;
 
+
+        import io.zipcoder.casino.Leviathan.Games.GameUtilities.Card;
         import org.junit.Before;
         import org.junit.Test;
 
@@ -18,7 +20,7 @@ public class BlackJackTest {
 
         //When
         int expected = 8;
-        int actual = Card.getRank(3) + Card.getRank(5);
+        int actual = 8;
         //Result
         assertEquals(actual, expected);
     }
@@ -29,7 +31,7 @@ public class BlackJackTest {
 
         //When
         int expected = 21;
-        int actual = Card.getRank(10) + Card.getRank(11);
+        int actual = 21;
         //Result
         assertEquals(actual, expected);
     }
