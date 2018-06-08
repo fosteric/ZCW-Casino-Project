@@ -17,11 +17,6 @@ public class  HigherCards extends CardGame implements Gambling{
         int player=10;
         int croupier=2;
 
-        /*
-
-        Rank.
-
-        */
         totalChips=aPlayer.getTotalChips();
         int newTotalChips=findWinner(player,croupier,wageAmount,totalChips);
         if(newTotalChips>totalChips)
@@ -50,9 +45,16 @@ public class  HigherCards extends CardGame implements Gambling{
         return totalChips;
     }
 
-    public int wageMoney() {
-         int wageAmount=aConsole.getIntInput("Enter the wage amount");
-        return wageAmount;
 
+    public int wageMoney() {
+        int bet;
+
+        do {
+            bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
+                    "Current chips= " + aPlayer.getTotalChips());
+
+        }while(bet > aPlayer.getTotalChips());
+
+        return bet;
     }
 }
