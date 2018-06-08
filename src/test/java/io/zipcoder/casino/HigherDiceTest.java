@@ -36,7 +36,7 @@ public class HigherDiceTest {
 
         //When
         int expected=2500;
-        int actual=test.findWinner(10,2,500,2000);
+        int actual=test.findWinner(10,2,500);
 
 
         //Result

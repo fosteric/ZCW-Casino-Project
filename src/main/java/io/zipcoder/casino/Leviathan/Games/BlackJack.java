@@ -10,26 +10,44 @@ public class BlackJack extends CardGame implements Gambling {
     int totalChips;
     Player aPlayer;
 
+    public BlackJack(Player aPlayer){
+        this.aPlayer = aPlayer;
+    }
+
     int aPlayerScore = Game.playerScore;
     int aHouseScore = Game.houseScore;
 
     //assuming this to be a random card rank in int
-    Card aCard = new Card(Rank.ACE,Suit.CLUBS);
-    Rank aGetRank = aCard.getRank();
+    //Card aCard = new Card(Rank.ACE,Suit.CLUBS);
+    //Rank aGetRank = aCard.getRank();
+
+    Deck deck = new Deck();
 
 
 
+    String playerDecision;
 
 
-
-
-    public boolean playGame() {
-        return false;
+    public void playGame() {
+        
     }
 
+    public int drawASingleCard(int cardRank){
+
+        Card card = deck.draw();
+
+        Rank rank = card.getRank();
+
+        int cardInt =rank.getValue();
+
+        return cardInt;
+    }
 
     //Player making the starting bet
     public int wageMoney() {
+
+        totalChips=aPlayer.getTotalChips();
+
         wageAmount = aConsole.getIntInput("Please make your starting bet:");
         if (wageAmount <= totalChips) {
             aConsole.println("Your current bet amount is: " + wageAmount);
@@ -42,7 +60,18 @@ public class BlackJack extends CardGame implements Gambling {
     }
 
     //initial player card value
-    public int startPlayerHand() {
+    private int startPlayerHand() {
+
+//        Card card = deck.draw();
+//
+//        Rank rank = card.getRank();
+//
+//        int cardInt =rank.getRank();
+
+        //aPlayerScore = drawASingleCard();
+
+
+
         return aPlayerScore; //= aGetRank + aGetRank;
     }
 
@@ -52,11 +81,42 @@ public class BlackJack extends CardGame implements Gambling {
     }
 
 
-    public void blackJack(String[] args) {
-        while(aPlayerScore <= 21){}
-
-
+    //ask for player's next move
+    public String blackJack(String playerDecision) {
+        if(startPlayerHand() < 21){
+            playerDecision = aConsole.getStringInput("Please make a call:\nHit\nStand\nRaise Bet");
+        }
+        return playerDecision;
     }
+
+
+
+    //Hit
+    public int hit(int playerHand) {
+
+
+        return 0;
+    }
+
+
+    //Stand
+    public int stand(int playerHand) {
+
+
+        return 0;
+    }
+
+    //Raise bet
+    public int raiseBet(int wageAmount) {
+
+
+        return 0;
+    }
+
+
+
+
+
 
 
 }

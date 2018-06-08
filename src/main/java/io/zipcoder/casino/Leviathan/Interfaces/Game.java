@@ -8,7 +8,7 @@ public interface Game {
  int houseScore = 0;
  boolean winner = false;
 
-    public boolean playGame();
+    public void playGame();
 }
 
 

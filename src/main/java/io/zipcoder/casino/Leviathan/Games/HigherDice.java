@@ -17,7 +17,7 @@ public class HigherDice extends DiceGame implements Gambling {
     }
 
 
-    public boolean playGame() {
+    public void playGame() {
         aConsole.print("Welcome to HigherDice!\nWe will both roll a die, and the higher number wins the wager.\nThe House wins on ties\n");
         Boolean result= false;
 
@@ -33,14 +33,13 @@ public class HigherDice extends DiceGame implements Gambling {
         aConsole.println("The House rolled a " + croupier);
         totalChips = aPlayer.getTotalChips();
 
-        int newTotalChips = findWinner(player, croupier, bet, totalChips);
-        aPlayer.setTotalChips(newTotalChips);
+        int newTotalChips = findWinner(player, croupier, bet);
         if (newTotalChips > totalChips) {
             result = true;
-            aConsole.println("You win! Your current chip total is: "+ newTotalChips);
+
         } else {
             result = false;
-            aConsole.println("You lose! Your current chip total is: "+ newTotalChips);
+
         }
 
         if((aPlayer.getTotalChips() == 0) || aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")){
@@ -48,22 +47,22 @@ public class HigherDice extends DiceGame implements Gambling {
 
         }
         }
-        return result;
-
     }
 
-    public int findWinner(int player, int croupier, int wageAmount, int totalChips) {
+    public int findWinner(int player, int croupier, int wageAmount) {
 
         if (player > croupier) {
 
-            totalChips = totalChips + wageAmount;
+            aPlayer.setTotalChips(aPlayer.getTotalChips() + wageAmount);
+            aConsole.println("You win! Your current chip total is: "+ aPlayer.getTotalChips());
 
         } else {
 
-            totalChips = totalChips - wageAmount;
+            aPlayer.setTotalChips(aPlayer.getTotalChips() - wageAmount);
+            aConsole.println("You lose! Your current chip total is: "+ aPlayer.getTotalChips());
         }
 
-        return totalChips;
+        return aPlayer.getTotalChips();
     }
 
     public int wageMoney() {
