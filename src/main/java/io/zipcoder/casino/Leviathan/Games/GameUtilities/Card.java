@@ -20,7 +20,9 @@ public class Card {
         return rank;
     }
 
-   public static void main(String[] args) {}
+
+    public static void main(String[] args) {
+    }
 //        Card ten = new Card(Rank.TEN, Suit.SPADES);
 //        Card one = new Card(Rank.ACE, Suit.SPADES);
 //
@@ -33,8 +35,6 @@ public class Card {
 //        System.out.println(ten.getRank());
 //        System.out.println(one.getRank());
 //    }
-
-
 
 
 }

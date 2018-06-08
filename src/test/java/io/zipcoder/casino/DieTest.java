@@ -33,10 +33,10 @@ public class DieTest {
         @Test
         public void rollADiceTest(){
             //Given
-
+            test.rollADice();
             //When
             int actual = 3;
-            int expected = test.rollADice();
+            int expected = test.getValue();
             //Result
             assertEquals(actual, expected,3);
         }
@@ -44,10 +44,10 @@ public class DieTest {
         @Test
         public void rollADiceTest2(){
             //Given
-
+            test.rollADice();
             //When
             int actual = 2;
-            int expected = test.rollADice();
+            int expected = test.getValue();
             //Result
             assertEquals(actual, expected,4);
         }

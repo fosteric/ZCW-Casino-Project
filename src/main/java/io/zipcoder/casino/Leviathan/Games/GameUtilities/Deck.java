@@ -6,12 +6,13 @@ import java.util.Collections;
 
 public class Deck {
 
+
     public void shuffle() {
         Collections.shuffle(deck);
 
     }
 
-    private ArrayList deck;
+    private ArrayList<Card> deck;
 
     public Deck() {
         this.deck = new ArrayList();
@@ -25,8 +26,12 @@ public class Deck {
         shuffle();
     }
 
+    public ArrayList getDeck(){
+        return deck;
+    }
 
-    public Object draw() {
+
+    public Card draw() {
         return deck.remove(deck.size() - 1);
 
 
