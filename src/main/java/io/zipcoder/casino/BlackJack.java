@@ -14,6 +14,9 @@ public class BlackJack extends CardGame implements Gambling {
     int aGetRank = Card.getRank();
 
 
+    Card acard = new Card(Rank.ACE,Suit.CLUBS);
+
+
     public int wageMoney() {
         return 0;
     }
@@ -24,15 +27,15 @@ public class BlackJack extends CardGame implements Gambling {
 
 
     //Player making the starting bet
-    public int startingBet() {
+    public int wageMoney() {
         wageAmount = aConsole.getIntInput("Please make your starting bet:");
         if (wageAmount <= totalChips) {
-            System.out.println("Your current bet amount is: " + wageAmount);
+            aConsole.println("Your current bet amount is: " + wageAmount);
             return wageAmount;
         } else {
-            System.out.println("Insufficient Chips!");
+            aConsole.println("Insufficient Chips!");
             //Recursion - this runs the method again and asks user to make the starting bet again
-            return startingBet();
+            return wageMoney();
         }
     }
 
