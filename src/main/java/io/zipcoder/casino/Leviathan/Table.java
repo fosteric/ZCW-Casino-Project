@@ -23,27 +23,27 @@ public class Table {
         if(choice==1)//Higher Dice
         {
             HigherDice higherDice=new HigherDice (aPlayer);
-            result=higherDice.playGame();
+            higherDice.playGame();
         }
         else if(choice==2)//Higher Cards
         {
             HigherCards higherCards=new HigherCards(aPlayer);
-            result=higherCards.playGame();
+            higherCards.playGame();
         }
         else if(choice==3)
         {
             //BlackJack blackJack=new BlackJack(aPlayer);
             BlackJack blackJack=new BlackJack();
-            result=blackJack.playGame();
+            blackJack.playGame();
         }
         else if(choice==4)
         {
             Yahtzee yahtzee =new Yahtzee(aPlayer);
-            result=yahtzee.playGame();
+            yahtzee.playGame();
         }
         if(result.equals(true))
         {
-            aConsole.println("Congrats ! You Won");
+            aConsole.println("Congrats! You Won");
             aConsole.println("Your current available Chips");
             String availableChips= aPlayer.getTotalChips().toString();
             aConsole.println(availableChips);
