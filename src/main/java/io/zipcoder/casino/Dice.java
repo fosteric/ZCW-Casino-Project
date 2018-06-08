@@ -7,6 +7,9 @@ public class Dice {
 
 
      dice = new Die[numberOfDice];
+     for (int i = 0; i < dice.length; i++){
+         dice[i] = new Die();
+     }
 }
 
     public Die[] getDice(){

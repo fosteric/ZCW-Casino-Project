@@ -58,3 +58,4 @@ public class  HigherCards extends CardGame implements Gambling{
         return bet;
     }
 }
+
