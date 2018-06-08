@@ -5,18 +5,21 @@ public class Yahtzee extends DiceGame {
 
     Console console = new Console();
     Map<YahtzeeFields, Integer> scoreSheet = new HashMap<YahtzeeFields, Integer>();
-    Dice diceRoller = new Dice(5);
+    Dice diceRoller;
     Die[] dice;
     Player aPlayer;
 
     public Yahtzee(Player aPlayer){
         this.aPlayer = aPlayer;
+        diceRoller = new Dice(5);
     }
 
     public boolean playGame() {
         //roll dice (1)
             //roll all 5 dice
+        dice = rollAllDice();
         //See current dice
+        displayDice();
         //Use roll or roll again?
             //If roll again, select which dice to keep
                 //roll remaining dice (2)
@@ -39,12 +42,24 @@ public class Yahtzee extends DiceGame {
     }
 
     public Die[] rollAllDice(){
-        //roll and return the entire array of dice
-        return null;
+        return diceRoller.rollAll();
     }
 
-    public void rollAgain(int... diePosition){
-        //roll specific die in the dice array
+    public void rollSelectDice(int... diePosition){
+        for (int i = 0; i < diePosition.length; i++){
+            dice[diePosition[i]].rollADice();
+        }
+    }
+
+    public void displayDice(){
+        StringBuilder currentDice = new StringBuilder();
+        for(int i = 0; i<dice.length; i++){
+            currentDice.append(dice[i].getValue());
+            if(i<dice.length-1) {
+                currentDice.append(", ");
+            }
+        }
+        console.println("current roll: " + currentDice.toString());
     }
 
     public int scoreRoll(YahtzeeFields yahtzeeField){

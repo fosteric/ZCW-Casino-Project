@@ -29,7 +29,7 @@ public class Deck {
 
 
     public ArrayList drawCard() {
-        
+        return null;
     }
 
 }

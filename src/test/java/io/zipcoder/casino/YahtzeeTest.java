@@ -6,23 +6,16 @@ import org.junit.Test;
 
 public class YahtzeeTest {
 
-
+    Console console = new Console();
+    Player aPlayer = new Player("eric", 20);
+    Yahtzee yahtzee = new Yahtzee(aPlayer);
     Dice diceRoller = new Dice(5);
     Die[] dice;
 
     @Test
-    public void rollAllDiceTest(){
-
-        //given
-        
-
-        //expected
-
-
-        //actual
-
-        //Result
-        assertEquals(actual, expected);
+    public void displayDiceTest(){
+        dice = yahtzee.rollAllDice();
+        yahtzee.displayDice();
     }
 
 }
