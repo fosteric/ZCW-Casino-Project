@@ -31,19 +31,6 @@ public class HigherDiceTest {
     }
 
     @Test
-    public void wageMoneyTest(){
-        //Given
-
-        //When
-        int actual = test.wageMoney();
-        int expected = 500;
-
-        //Result
-        assertEquals(actual, expected);
-
-    }
-
-    @Test
     public void findWinnerTest(){
         //Given
 

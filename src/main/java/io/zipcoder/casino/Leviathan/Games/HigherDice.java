@@ -19,8 +19,11 @@ public class HigherDice extends DiceGame implements Gambling {
 
         Boolean result;
         bet = wageMoney();
-        int player = aDie.rollADice();
-        int croupier = aDie.rollADice();
+
+        aDie.rollADice();
+        int player = aDie.getValue();
+        aDie.rollADice();
+        int croupier = aDie.getValue();
         totalChips = aPlayer.getTotalChips();
 
         int newTotalChips = findWinner(player, croupier, bet, totalChips);
