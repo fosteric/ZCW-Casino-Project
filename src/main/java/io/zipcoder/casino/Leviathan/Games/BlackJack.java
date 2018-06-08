@@ -32,7 +32,16 @@ public class BlackJack extends CardGame implements Gambling {
         return false;
     }
 
+    public int drawASingleCard(int cardRank){
 
+        Card card = deck.draw();
+
+        Rank rank = card.getRank();
+
+        int cardInt =rank.getRank();
+
+        return cardInt;
+    }
 
     //Player making the starting bet
     public int wageMoney() {
@@ -53,13 +62,13 @@ public class BlackJack extends CardGame implements Gambling {
     //initial player card value
     public int startPlayerHand() {
 
-        Card card = deck.draw();
+//        Card card = deck.draw();
+//
+//        Rank rank = card.getRank();
+//
+//        int cardInt =rank.getRank();
 
-        Rank rank = card.getRank();
-
-        int cardInt =rank.getRank();
-
-        aPlayerScore = cardInt;
+        aPlayerScore = drawASingleCard() + drawASingleCard();
 
 
 
