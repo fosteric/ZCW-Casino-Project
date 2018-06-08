@@ -1,4 +1,5 @@
 package io.zipcoder.casino;
+import io.zipcoder.casino.Leviathan.Casino;
 
 public class Main {
     public void main(String[] args){
