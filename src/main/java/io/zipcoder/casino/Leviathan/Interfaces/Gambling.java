@@ -1,4 +1,4 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.Leviathan.Interfaces;
 
 public interface Gambling {
 

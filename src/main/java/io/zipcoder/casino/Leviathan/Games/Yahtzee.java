@@ -1,5 +1,8 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.Leviathan.Games;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.*;
+import io.zipcoder.casino.Leviathan.*;
 import java.util.*;
+
 
 public class Yahtzee extends DiceGame {
 

@@ -1,4 +1,6 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.Leviathan.Games;
+import io.zipcoder.casino.Leviathan.Interfaces.*;
+import io.zipcoder.casino.Leviathan.*;
 
 public class  HigherCards extends CardGame implements Gambling{
     Console aConsole=new Console();

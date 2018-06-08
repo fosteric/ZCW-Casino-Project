@@ -1,4 +1,4 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.Leviathan.Games.GameUtilities;
 
 public enum Rank {
     ACE(14),

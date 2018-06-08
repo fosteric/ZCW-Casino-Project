@@ -3,6 +3,8 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import io.zipcoder.casino.Leviathan.Games.*;
+import io.zipcoder.casino.Leviathan.*;
 
 /**
  * The test class HigherDiceTest.

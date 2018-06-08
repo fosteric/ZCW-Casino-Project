@@ -1,4 +1,7 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.Leviathan;
+import io.zipcoder.casino.Leviathan.Interfaces.*;
+import io.zipcoder.casino.Leviathan.Games.*;
+
 
 public class Table {
 

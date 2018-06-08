@@ -1,4 +1,4 @@
-package io.zipcoder.casino;
+package io.zipcoder.casino.Leviathan;
 import java.util.Scanner;
 
 public class Console {
