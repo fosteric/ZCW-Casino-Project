@@ -33,30 +33,27 @@ public class HigherDiceTest {
     @Test
     public void wageMoneyTest(){
         //Given
-        test.wageMoney();
-        int sum = 1;
 
         //When
-        int actual = sum;
-        int expected = 17;
+        int actual = test.wageMoney();
+        int expected = 500;
 
         //Result
-        assertEquals(actual, expected, 13);
+        assertEquals(actual, expected);
 
     }
 
     @Test
     public void findWinnerTest(){
         //Given
-        test.wageMoney();
-        int sum = 0;
 
         //When
-        int actual = sum;
-        int expected = 17;
+        int expected=2500;
+        int actual=test.findWinner(10,2,500,2000);
+
 
         //Result
-        assertEquals(actual, expected, 13);
+        assertEquals(actual,expected);
 
     }
 
