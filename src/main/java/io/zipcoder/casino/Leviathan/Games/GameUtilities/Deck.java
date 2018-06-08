@@ -12,7 +12,7 @@ public class Deck {
 
     }
 
-    private ArrayList deck;
+    private ArrayList<Card> deck;
 
     public Deck() {
         this.deck = new ArrayList();
@@ -31,7 +31,7 @@ public class Deck {
     }
 
 
-    public Object draw() {
+    public Card draw() {
         return deck.remove(deck.size() - 1);
 
 
