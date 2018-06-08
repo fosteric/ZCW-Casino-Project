@@ -10,6 +10,10 @@ public class BlackJack extends CardGame implements Gambling {
     int totalChips;
     Player aPlayer;
 
+    public BlackJack(Player aPlayer){
+        this.aPlayer = aPlayer;
+    }
+
     int aPlayerScore = Game.playerScore;
     int aHouseScore = Game.houseScore;
 
@@ -18,9 +22,7 @@ public class BlackJack extends CardGame implements Gambling {
     Rank aGetRank = aCard.getRank();
 
 
-
-
-
+    String playerDecision;
 
 
     public boolean playGame() {
@@ -28,8 +30,12 @@ public class BlackJack extends CardGame implements Gambling {
     }
 
 
+
     //Player making the starting bet
     public int wageMoney() {
+
+        totalChips=aPlayer.getTotalChips();
+
         wageAmount = aConsole.getIntInput("Please make your starting bet:");
         if (wageAmount <= totalChips) {
             aConsole.println("Your current bet amount is: " + wageAmount);
@@ -52,19 +58,42 @@ public class BlackJack extends CardGame implements Gambling {
     }
 
 
-    //play the game
-    public void blackJack(String[] args) {
-        while(aPlayerScore < 21){
-            aConsole.getStringInput("Please make a call:\\nHit\\nStand");
-
-
-
-
-
+    //ask for player's next move
+    public String blackJack(String playerDecision) {
+        if(startPlayerHand() < 21){
+            playerDecision = aConsole.getStringInput("Please make a call:\nHit\nStand\nRaise Bet");
         }
-
-
+        return playerDecision;
     }
+
+
+
+    //Hit
+    public int hit(int playerHand) {
+
+
+        return 0;
+    }
+
+
+    //Stand
+    public int stand(int playerHand) {
+
+
+        return 0;
+    }
+
+    //Raise bet
+    public int raiseBet(int wageAmount) {
+
+
+        return 0;
+    }
+
+
+
+
+
 
 
 }
