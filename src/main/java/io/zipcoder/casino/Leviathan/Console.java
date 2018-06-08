@@ -27,11 +27,15 @@ public class Console {
     public  Integer getIntInput(String prompt) {
         Scanner scannerB = new Scanner(System.in);
         int b = 0;
+        boolean good =false;
         println(prompt);
-        if(scannerB.hasNextInt()){
-            b = scannerB.nextInt();
-        }else{
-            System.out.print("Invalid input please start over\n");
+        while(good == false) {
+            if (scannerB.hasNextInt()) {
+                b = scannerB.nextInt();
+                good = true;
+            } else {
+                System.out.print("Invalid input please start over\n");
+            }
         }
         return b;
     }

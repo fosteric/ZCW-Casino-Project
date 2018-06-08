@@ -6,29 +6,36 @@ import java.util.*;
 
 public class Yahtzee extends DiceGame {
 
+    Player aPlayer;
+    Dice diceRoller = new Dice(5);
+    Die[] dice;
     Console console = new Console();
     Map<YahtzeeField, Integer> scoreSheet = new HashMap<YahtzeeField, Integer>();
-    Dice diceRoller;
-    Die[] dice;
-    Player aPlayer;
+
 
     public Yahtzee(Player aPlayer) {
         this.aPlayer = aPlayer;
-        diceRoller = new Dice(5);
         dice = diceRoller.rollAll();
     }
 
-    public boolean playGame() {
-        dice = diceRoller.rollAll();
-        displayDice();
-        boolean rollAgain = chooseToRollAgain();
-        if (rollAgain) {
-            getSelectDiceToKeep();
-            rollUnselectedDice();
-        } else {
-            YahtzeeField fieldChoice = chooseYahtzeeField();
-            scoreDice(fieldChoice);
-        }
+    public static void main(String[] args) {
+        Player aPlayer = new Player("eric", 20);
+        Yahtzee yahtzee = new Yahtzee(aPlayer);
+        yahtzee.playGame();
+    }
+
+    public void playGame() {
+        rollDice();
+
+        String rollAgainString = userInputRollAgain();
+        boolean rollAgain = userInputRollAgainBoolean(rollAgainString);
+
+        rollAgainLoop(rollAgain);
+
+        YahtzeeField fieldChoice = chooseYahtzeeField();
+        scoreDice(fieldChoice);
+
+
         //roll remaining dice (2)
         //If use roll, select a field
         //See current dice
@@ -43,12 +50,20 @@ public class Yahtzee extends DiceGame {
         //See fields and scoring formula
         //see current score sheet
         //quit game
-
-
-        return false;
     }
 
-    public void displayDice() {
+    /*
+    Roll dice
+     */
+    public void rollDice(){
+        dice = diceRoller.rollAll();
+        printDice();
+    }
+
+    /*
+    Display dice
+     */
+    public void printDice() {
         StringBuilder currentDice = new StringBuilder();
         for (int i = 0; i < dice.length; i++) {
             currentDice.append(dice[i].getValue());
@@ -59,35 +74,71 @@ public class Yahtzee extends DiceGame {
         console.println("current roll: " + currentDice.toString());
     }
 
-    public boolean chooseToRollAgain() {
-        String rollAgain = aConsole.getStringInput
-                ("Roll again or score dice?").toUpperCase();
-        boolean rollAgainChoice;
-        if (rollAgain.equals("ROLL AGAIN")) {
-            rollAgainChoice = true;
-        } else {
-            rollAgainChoice = false;
-        }
-        return rollAgainChoice;
+    /*
+    Ask user if they want to roll again
+     */
+    public String userInputRollAgain() {
+        return aConsole.getStringInput ("Roll again?").toUpperCase();
     }
 
-    public int[] getSelectDiceToKeep(){
-        int [] dicePositionsToKeep = null;
-        ArrayList<Integer> dicePositionsToKeepList = new ArrayList<Integer>();
+    /*
+    Convert user's choice to roll again to boolean
+     */
+    public boolean userInputRollAgainBoolean(String userInputString){
+        boolean rollAgain;
+        if (userInputString.equals("YES")) {
+            rollAgain = true;
+        } else {
+            rollAgain = false;
+        }
+        return rollAgain;
+    }
+
+    /*
+    Allow the user to roll again up to 2 more times
+     */
+    public void rollAgainLoop(boolean rollAgain) {
+
+        int rollCounter = 1;
+        while (rollAgain && rollCounter <= 3) {
+            //select the dice to keep
+            Integer[] diceToRollAgain = userInputChooseDice();
+            //roll remaining dice
+            rollSelectedDiceAgain(diceToRollAgain);
+            printDice();
+            rollCounter++;
+        }
+    }
+
+    /*
+    Ask user to select which dice to roll again
+     */
+    public Integer[] userInputChooseDice(){
+        Integer [] diceToRollAgainArray = null;
+        ArrayList<Integer> diceToRollAgainList = new ArrayList<Integer>();
         boolean stillSelecting = true;
         while (stillSelecting) {
-            Integer positionOfDiceToKeep = aConsole.getIntInput
-                    ("Enter position of dice to keep or 0 to perform roll");
-            dicePositionsToKeepList.add(positionOfDiceToKeep);
+            int positionOfDiceToKeep = aConsole.getIntInput("Enter position of dice to roll again or 0 to perform roll");
+            if (positionOfDiceToKeep == 0) {
+                stillSelecting = false;
+            } else {
+                diceToRollAgainList.add(positionOfDiceToKeep);
+            }
         }
-        return dicePositionsToKeep;
+        diceToRollAgainArray = diceToRollAgainList.toArray(new Integer[diceToRollAgainList.size()]);
+        return diceToRollAgainArray;
     }
 
-    public void rollUnselectedDice(int... diePosition) {
-        for (int i = 0; i < diePosition.length; i++) {
-            dice[diePosition[i]].rollADice();
+    /*
+    Roll the selected dice again
+     */
+    public void rollSelectedDiceAgain(Integer... diceToRollAgain) {
+        for (int i = 0; i < diceToRollAgain.length; i++) {
+            dice[diceToRollAgain[i]-1].rollADice();
         }
     }
+
+
 
     public YahtzeeField chooseYahtzeeField() {
         String userInput = aConsole.getStringInput
