@@ -6,29 +6,45 @@ import java.util.*;
 
 public class Yahtzee extends DiceGame {
 
+    Player aPlayer;
+    Dice diceRoller = new Dice(5);
+    Die[] dice;
     Console console = new Console();
     Map<YahtzeeField, Integer> scoreSheet = new HashMap<YahtzeeField, Integer>();
-    Dice diceRoller;
-    Die[] dice;
-    Player aPlayer;
+
 
     public Yahtzee(Player aPlayer) {
         this.aPlayer = aPlayer;
-        diceRoller = new Dice(5);
         dice = diceRoller.rollAll();
     }
 
+    public static void main(String[] args) {
+        Player aPlayer = new Player("eric", 20);
+        Yahtzee yahtzee = new Yahtzee(aPlayer);
+        yahtzee.playGame();
+    }
+
     public boolean playGame() {
+
+        //roll all dice
         dice = diceRoller.rollAll();
+        //display dice
         displayDice();
-        boolean rollAgain = chooseToRollAgain();
+
+        //ask user if they want to roll again
+        boolean rollAgain = userInputRollAgain();
+        //if they want to roll again
         if (rollAgain) {
-            getSelectDiceToKeep();
-            rollUnselectedDice();
+            //select the dice to keep
+            Integer[] diceToRollAgain = userInputDiceToRollAgain();
+            //roll remaining dice
+            rollSelectedDiceAgain(diceToRollAgain);
+            displayDice();
         } else {
             YahtzeeField fieldChoice = chooseYahtzeeField();
             scoreDice(fieldChoice);
         }
+
         //roll remaining dice (2)
         //If use roll, select a field
         //See current dice
@@ -59,33 +75,38 @@ public class Yahtzee extends DiceGame {
         console.println("current roll: " + currentDice.toString());
     }
 
-    public boolean chooseToRollAgain() {
-        String rollAgain = aConsole.getStringInput
-                ("Roll again or score dice?").toUpperCase();
-        boolean rollAgainChoice;
-        if (rollAgain.equals("ROLL AGAIN")) {
-            rollAgainChoice = true;
+    public boolean userInputRollAgain() {
+        String rollAgainInput = aConsole.getStringInput
+                ("Roll again?").toUpperCase();
+        boolean rollAgain;
+        if (rollAgainInput.equals("YES")) {
+            rollAgain = true;
         } else {
-            rollAgainChoice = false;
+            rollAgain = false;
         }
-        return rollAgainChoice;
+        return rollAgain;
     }
 
-    public int[] getSelectDiceToKeep(){
-        int [] dicePositionsToKeep = null;
-        ArrayList<Integer> dicePositionsToKeepList = new ArrayList<Integer>();
+    public Integer[] userInputDiceToRollAgain(){
+        Integer [] diceToRollAgainArray = null;
+        ArrayList<Integer> diceToRollAgainList = new ArrayList<Integer>();
         boolean stillSelecting = true;
         while (stillSelecting) {
-            Integer positionOfDiceToKeep = aConsole.getIntInput
-                    ("Enter position of dice to keep or 0 to perform roll");
-            dicePositionsToKeepList.add(positionOfDiceToKeep);
+            int positionOfDiceToKeep = aConsole.getIntInput("Enter position of dice to roll again or 0 to perform roll");
+            if (positionOfDiceToKeep == 0) {
+                stillSelecting = false;
+            } else {
+                diceToRollAgainList.add(positionOfDiceToKeep);
+            }
         }
-        return dicePositionsToKeep;
+        diceToRollAgainArray = diceToRollAgainList.toArray(new Integer[diceToRollAgainList.size()]);
+        return diceToRollAgainArray;
     }
 
-    public void rollUnselectedDice(int... diePosition) {
-        for (int i = 0; i < diePosition.length; i++) {
-            dice[diePosition[i]].rollADice();
+
+    public void rollSelectedDiceAgain(Integer... diceToRollAgain) {
+        for (Integer position : diceToRollAgain) {
+            dice[diceToRollAgain[position]].rollADice();
         }
     }
 

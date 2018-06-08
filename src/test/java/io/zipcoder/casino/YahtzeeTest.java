@@ -9,16 +9,15 @@ import io.zipcoder.casino.Leviathan.Games.*;
 
 public class YahtzeeTest {
 
-    Console console = new Console();
-    Player aPlayer;
     Yahtzee yahtzee;
+    Player aPlayer;
     Dice diceRoller;
     Die[] dice;
+    Console console = new Console();
 
     public YahtzeeTest(){
-        aPlayer = new Player("eric", 20);
-        yahtzee = new Yahtzee(aPlayer);
-        diceRoller = new Dice(5);
+        this.aPlayer = new Player("eric", 20);
+        this.yahtzee = new Yahtzee(aPlayer);
     }
 
     @Test
@@ -27,9 +26,12 @@ public class YahtzeeTest {
     }
 
     @Test
-    public void rollSelectDice(){
-
+    public void rollSelectedDiceAgainTest(){
+        yahtzee.rollSelectedDiceAgain(3,5);
+        yahtzee.displayDice();
     }
+
+
 
 
 
