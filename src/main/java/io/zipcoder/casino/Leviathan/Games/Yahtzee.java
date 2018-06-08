@@ -26,7 +26,7 @@ public class Yahtzee extends DiceGame {
 
     public void playGame() {
 
-        createNewScoreSheet();
+        createBlankScoreSheet();
 
         boolean scoreSheetFull = checkScoreSheetForCompletion();
 
@@ -37,20 +37,21 @@ public class Yahtzee extends DiceGame {
 
             YahtzeeField fieldChoice = chooseYahtzeeField();
             scoreDice(fieldChoice);
-
-            //other things you might want to do..
-            //See fields and scoring formula
-            //see current score sheet
-            //quit game
         }
+
     }
 
+    //==================================================================================
+    // SCORE SHEET METHODS
+    //==================================================================================
 
     /*
-    Create new score sheet
+    Create blank score sheet
      */
-    public void createNewScoreSheet(){
-
+    public void createBlankScoreSheet(){
+        for (YahtzeeField field : YahtzeeField.values()){
+            scoreSheet.put(field, null);
+        }
     }
 
     /*
@@ -68,6 +69,42 @@ public class Yahtzee extends DiceGame {
         return true;
     }
 
+    /*
+    Print score sheet
+     */
+    public void printScoreSheet(){
+        console.println("Scoresheet: " + scoreSheet.toString());
+    }
+
+    //==================================================================================
+    // SCORING ROLL METHODS
+    //==================================================================================
+
+    /*
+    See fields and formula for score
+     */
+
+    public YahtzeeField chooseYahtzeeField() {
+        String userInput = aConsole.getStringInput
+                ("Which field do you want to score?").toUpperCase();
+        return YahtzeeField.ACES;
+    }
+
+    public void scoreDice(YahtzeeField yahtzeeField) {
+        //take in field and dice array and give a score
+    }
+
+    public void updateScoreSheet(YahtzeeField yahtzeeField, int score) {
+        //Take in field and score and update sheet
+    }
+
+    public void displayScoreSheet() {
+        //print score sheet
+    }
+
+    //==================================================================================
+    // ROLLING DICE METHODS
+    //==================================================================================
 
     /*
     Roll dice
@@ -163,23 +200,5 @@ public class Yahtzee extends DiceGame {
     }
 
 
-
-    public YahtzeeField chooseYahtzeeField() {
-        String userInput = aConsole.getStringInput
-                ("Which field do you want to score?").toUpperCase();
-        return YahtzeeField.ACES;
-    }
-
-    public void scoreDice(YahtzeeField yahtzeeField) {
-        //take in field and dice array and give a score
-    }
-
-    public void updateScoreSheet(YahtzeeField yahtzeeField, int score) {
-        //Take in field and score and update sheet
-    }
-
-    public void displayScoreSheet() {
-        //print score sheet
-    }
 
 }
