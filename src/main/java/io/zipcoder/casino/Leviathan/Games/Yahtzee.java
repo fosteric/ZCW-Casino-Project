@@ -25,12 +25,10 @@ public class Yahtzee extends DiceGame {
     }
 
     public void playGame() {
+
         rollDice();
 
-        String rollAgainString = userInputRollAgain();
-        boolean rollAgain = userInputRollAgainBoolean(rollAgainString);
-
-        rollAgainLoop(rollAgain);
+        rollAgainLoop();
 
         YahtzeeField fieldChoice = chooseYahtzeeField();
         scoreDice(fieldChoice);
@@ -97,7 +95,10 @@ public class Yahtzee extends DiceGame {
     /*
     Allow the user to roll again up to 2 more times
      */
-    public void rollAgainLoop(boolean rollAgain) {
+    public void rollAgainLoop() {
+
+        String rollAgainString = userInputRollAgain();
+        boolean rollAgain = userInputRollAgainBoolean(rollAgainString);
 
         int rollCounter = 1;
         while (rollAgain && rollCounter <= 3) {
@@ -107,6 +108,9 @@ public class Yahtzee extends DiceGame {
             rollSelectedDiceAgain(diceToRollAgain);
             printDice();
             rollCounter++;
+
+            rollAgainString = userInputRollAgain();
+            rollAgain = userInputRollAgainBoolean(rollAgainString);
         }
     }
 
