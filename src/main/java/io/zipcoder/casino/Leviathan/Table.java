@@ -51,6 +51,9 @@ public class Table {
         else
         {
             aConsole.println("You Lose");
+            aConsole.println("Your current available Chips");
+            String availableChips= aPlayer.getTotalChips().toString();
+            aConsole.println(availableChips);
         }
 
     }
