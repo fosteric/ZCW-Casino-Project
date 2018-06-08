@@ -52,8 +52,16 @@ public class BlackJack extends CardGame implements Gambling {
     }
 
 
+    //play the game
     public void blackJack(String[] args) {
-        while(aPlayerScore <= 21){}
+        while(aPlayerScore < 21){
+            aConsole.getStringInput("Please make a call:\\nHit\\nStand");
+
+
+
+
+
+        }
 
 
     }
