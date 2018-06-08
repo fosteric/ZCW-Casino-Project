@@ -15,13 +15,11 @@ public enum Rank {
     THREE(3),
     TWO(2);
 
-
     private int value;
 
-   private Rank(int value)
-   {
-       this.value=value;
-   }
+    Rank(int value) {
+        this.value = value;
+    }
 
     public int getValue() {
         return this.value;
