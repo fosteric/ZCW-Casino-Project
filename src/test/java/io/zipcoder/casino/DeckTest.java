@@ -1,7 +1,5 @@
 package io.zipcoder.casino;
 
-import static org.junit.Assert.*;
-
 import io.zipcoder.casino.Leviathan.Games.GameUtilities.Card;
 import io.zipcoder.casino.Leviathan.Games.GameUtilities.Deck;
 import io.zipcoder.casino.Leviathan.Games.GameUtilities.Rank;
@@ -9,6 +7,9 @@ import io.zipcoder.casino.Leviathan.Games.GameUtilities.Suit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class DeckTest {
     /**
@@ -48,13 +49,14 @@ public class DeckTest {
 
     @Test
     public void removalTest() {
-
+        //Given
         Deck deck = new Deck();
+        deck.draw();
         //When
-        Card result = deck.draw();
+        int expected = 51;
+        int actual = deck.size();
         //Result
-        int cardsRemaining = deck.size();
-        assertEquals(result, cardsRemaining);
+        assertEquals(expected, actual);
 
 
     }
