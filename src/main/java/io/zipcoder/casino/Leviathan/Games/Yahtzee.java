@@ -100,6 +100,7 @@ public class Yahtzee extends DiceGame {
 
     public int scoreDice(YahtzeeField yahtzeeField) {
         //take in field and dice array and give a score
+        return -1;
     }
 
     public void updateScoreSheet(YahtzeeField yahtzeeField, int score) {
