@@ -11,6 +11,7 @@ public class HigherDice extends DiceGame implements Gambling {
     Die aDie = new Die();
     boolean playAgain = true;
 
+
     public HigherDice(Player aPlayer) {
         this.aPlayer = aPlayer;
     }
@@ -32,25 +33,25 @@ public class HigherDice extends DiceGame implements Gambling {
         findWinner(player, croupier, bet);
 
 
-        if((aPlayer.getTotalChips() == 0) || aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")){
-            playAgain= false;
+        if((aPlayer.getTotalChips() == 0) )
+            {
+                aConsole.println("You are out of chips. You may no longer play");
+                playAgain = false;
+            } else if(aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")){
+            playAgain = false;
         }
         }
-    }
+        }
 
     public int findWinner(int player, int croupier, int wageAmount) {
 
         if (player > croupier) {
-
             aPlayer.setTotalChips(aPlayer.getTotalChips() + wageAmount);
             aConsole.println("You win! Your current chip total is: "+ aPlayer.getTotalChips());
-
         } else {
-
             aPlayer.setTotalChips(aPlayer.getTotalChips() - wageAmount);
             aConsole.println("You lose! Your current chip total is: "+ aPlayer.getTotalChips());
         }
-
         return aPlayer.getTotalChips();
     }
 
@@ -58,9 +59,8 @@ public class HigherDice extends DiceGame implements Gambling {
 
         do {
             bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
-                    "Current chips= " + aPlayer.getTotalChips());
-
-        }while(bet > aPlayer.getTotalChips());
+                    "Current chips= " + aPlayer.getTotalChips()+ "\n");
+        }while(bet > aPlayer.getTotalChips() && bet < 0);
 
         return bet;
     }

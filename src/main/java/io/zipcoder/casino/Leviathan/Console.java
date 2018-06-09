@@ -16,6 +16,10 @@ public class Console {
         println(prompt);
         String userInput = scanner.nextLine();
         String userInput2 = userInput.toLowerCase();
+        if(userInput2.equals("leave")){
+            System.out.print("You abandon your chips and sprint out of the casino.");
+            System.exit(0);
+        }
         return userInput2;
     }
 
@@ -25,11 +29,11 @@ public class Console {
     }*/
 
     public  Integer getIntInput(String prompt) {
-        Scanner scannerB = new Scanner(System.in);
         int b = 0;
         boolean good =false;
         println(prompt);
         while(good == false) {
+            Scanner scannerB = new Scanner(System.in);
             if (scannerB.hasNextInt()) {
                 b = scannerB.nextInt();
                 good = true;
