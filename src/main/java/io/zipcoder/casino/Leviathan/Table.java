@@ -62,8 +62,12 @@ public class Table {
                 played = true;
             } else if (choice == 5) // Chips
             {
-                aPlayer.setTotalChips(aPlayer.getTotalChips() + aConsole.getIntInput("How many more chips would you like?"));
-                aConsole.println("Great! Here you go! Good Luck!");
+                if (aPlayer.getAge() > 20) {
+                    aPlayer.setTotalChips(aPlayer.getTotalChips() + aConsole.getIntInput("How many more chips would you like?"));
+                    aConsole.println("Great! Here you go! Good Luck!\n");
+                } else {
+                    aConsole.println("You are not old enough to gamble, so we won't be able to let you purchase any chips.\n");
+                }
             } else if (choice == 6) // Cash Out
             {
                 play = false;
@@ -71,7 +75,7 @@ public class Table {
                 aConsole.println("You've cashed out " + aPlayer.getTotalChips() + " chips");
                 aConsole.println("Please come again!");
             } else {
-                aConsole.println("That is not an option " + aPlayer.getName() + "... Do better");
+                aConsole.println("That is not an option " + aPlayer.getName() + "... Do better\n");
             }
         }
 

@@ -33,14 +33,16 @@ public class HigherDice extends DiceGame implements Gambling {
             int croupier = aDie.getValue();
             aConsole.println("The House rolled a " + croupier);
             findWinner(player, croupier, bet);
+            repeat();
+        }
+    }
 
-
-            if ((aPlayer.getTotalChips() == 0)) {
-                aConsole.println("You are out of chips. You may no longer play");
-                playAgain = false;
-            } else if (aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")) {
-                playAgain = false;
-            }
+    public void repeat() {
+        if ((aPlayer.getTotalChips() == 0)) {
+            aConsole.println("You are out of chips. You may no longer play");
+            playAgain = false;
+        } else if (aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")) {
+            playAgain = false;
         }
     }
 
