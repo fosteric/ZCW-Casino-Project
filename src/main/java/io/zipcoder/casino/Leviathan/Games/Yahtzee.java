@@ -161,14 +161,15 @@ public class Yahtzee extends DiceGame {
     Choose yahtzee field to score
      */
     public YahtzeeField chooseYahtzeeField() {
-        boolean inputValid = true;
-        boolean inputIsFree = true;
+        boolean inputValid;
+        boolean inputIsFree = false;
         String userInput;
         do {
-            userInput = aConsole.getStringInput
-                    ("Which field do you want to score?").toUpperCase();
+            userInput = aConsole.getStringInput("Which field do you want to score?").toUpperCase();
             inputValid = isYahtzeeField(userInput);
-            inputIsFree = isYahtzeeFieldFree(userInput);
+            if (inputValid){
+                inputIsFree = isYahtzeeFieldFree(userInput);
+            }
         } while(!inputValid && !inputIsFree);
         return YahtzeeField.valueOf(userInput);
     }
@@ -177,9 +178,8 @@ public class Yahtzee extends DiceGame {
     Check if yahtzee field is valid
      */
     public boolean isYahtzeeField(String userInput) {
-        YahtzeeField[] yahtzeeFields = YahtzeeField.values();
-        for (YahtzeeField aYahtzeeField : yahtzeeFields) {
-            if (aYahtzeeField.name().equals(userInput)) {
+        for (YahtzeeField aYahtzeeField : YahtzeeField.values()) {
+            if (aYahtzeeField.toString().equals(userInput)) {
                 return true;
             }
         }
@@ -190,11 +190,10 @@ public class Yahtzee extends DiceGame {
     Check if yahtzee field is free
      */
     public boolean isYahtzeeFieldFree(String userInput) {
-        boolean inputIsFree = true;
         if(scoreSheet.get(YahtzeeField.valueOf(userInput)) != null){
-            inputIsFree = false;
+            return false;
         }
-        return inputIsFree;
+        return true;
     }
 
     /*
@@ -476,20 +475,18 @@ public class Yahtzee extends DiceGame {
     public Integer[] userInputChooseDice() {
         Integer[] diceToRollAgainArray = null;
         ArrayList<Integer> diceToRollAgainList = new ArrayList<Integer>();
-        boolean stillSelecting = true;
-        boolean error = false;
+        boolean stillSelecting;
         do {
             String positionOfDiceToKeep = aConsole.getStringInput("Enter position of dice to roll again or enter to perform roll");
-            if (Integer.parseInt(positionOfDiceToKeep) < 0 ||
-                    Integer.parseInt(positionOfDiceToKeep) > 5){
-                error = true;
-            }
-            else if (positionOfDiceToKeep.equals("")) {
+            if (positionOfDiceToKeep.equals("")) {
                 stillSelecting = false;
-            } else {
+            } else if (Integer.parseInt(positionOfDiceToKeep) > 0 || Integer.parseInt(positionOfDiceToKeep) < 6){
                 diceToRollAgainList.add(Integer.parseInt(positionOfDiceToKeep));
+                stillSelecting = true;
+            } else {
+                stillSelecting = false;
             }
-        } while (stillSelecting && error );
+        } while (stillSelecting);
         diceToRollAgainArray = diceToRollAgainList.toArray(new Integer[diceToRollAgainList.size()]);
         return diceToRollAgainArray;
     }
