@@ -29,25 +29,29 @@ public class  HigherCards extends CardGame implements Gambling{
              Card acard = deck.draw();
              Rank rank = acard.getRank();
              int player = rank.getValue();
+             String playervalueString=rank.toString();
              Suit suit = acard.getSuit();
              String suitString = suit.toString();
 
-             aConsole.println("Your suit is :");
+             aConsole.println("You got :%s of %s",playervalueString,suitString);
+             /*aConsole.println("Your suit is :");
              aConsole.print(suitString);
              aConsole.println("\nYour rank is :");
              String rankValue = rank.toString();
-             aConsole.println(rankValue);
+             aConsole.println(rankValue);*/
 
              Card acard2 = deck.draw();
              Rank rank2 = acard2.getRank();
+             String playervalueString2=rank2.toString();
              Suit suit2 = acard2.getSuit();
              String suitString2 = suit2.toString();
              int croupier = rank2.getValue();
-             aConsole.println("\n\nHouse suit is :");
+             aConsole.println("House got :%s of %s",playervalueString2,suitString2);
+             /*aConsole.println("\n\nHouse suit is :");
              aConsole.print(suitString2);
              aConsole.println("\nHouse rank is :");
              String rankValue2 = rank2.toString();
-             aConsole.println(rankValue2);
+             aConsole.println(rankValue2);*/
 
              int totalChips = aPlayer.getTotalChips();
              int newTotalChips = findWinner(player, croupier, wageAmount, totalChips);

@@ -10,7 +10,7 @@ import io.zipcoder.casino.Leviathan.*;
  * The test class HigherDiceTest.
  */
 public class HigherDiceTest {
-    Player aPlayer = new Player("Chad", 2000, 21);
+    Player aPlayer = new Player("Chad", 2000, 27);
     HigherDice test = new HigherDice(aPlayer);
     /**
      * Default constructor for test class DiceTest
@@ -32,10 +32,10 @@ public class HigherDiceTest {
     @Test
     public void findWinnerTest(){
         //Given
-
+        test.findWinner(10,2,500);
         //When
         int expected=2500;
-        int actual=test.findWinner(10,2,500);
+        int actual=aPlayer.getTotalChips();
 
 
         //Result
