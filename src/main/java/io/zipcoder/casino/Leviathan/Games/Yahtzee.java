@@ -7,50 +7,109 @@ import java.util.*;
 public class Yahtzee extends DiceGame {
 
     Player aPlayer;
-    Dice diceRoller = new Dice(5);
+    Dice diceRoller;
     Die[] dice;
-    Console console = new Console();
-    Map<YahtzeeField, Integer> scoreSheet = new HashMap<YahtzeeField, Integer>();
+    Console console;
+    Map<YahtzeeField, Integer> scoreSheet;
 
 
     public Yahtzee(Player aPlayer) {
         this.aPlayer = aPlayer;
+        diceRoller = new Dice(5);
+        scoreSheet = new LinkedHashMap<YahtzeeField, Integer>();
         dice = diceRoller.rollAll();
     }
 
     public static void main(String[] args) {
-        Player aPlayer = new Player("eric", 20);
+        Player aPlayer = new Player("eric", 20, 18);
         Yahtzee yahtzee = new Yahtzee(aPlayer);
         yahtzee.playGame();
     }
 
+    //==================================================================================
+    // PLAY GAME METHOD
+    //==================================================================================
+
     public void playGame() {
-        rollDice();
 
-        String rollAgainString = userInputRollAgain();
-        boolean rollAgain = userInputRollAgainBoolean(rollAgainString);
+        createBlankScoreSheet();
+        printScoreSheet();
 
-        rollAgainLoop(rollAgain);
+        boolean scoreSheetFull = checkScoreSheetForCompletion();
 
-        YahtzeeField fieldChoice = chooseYahtzeeField();
-        scoreDice(fieldChoice);
+        while (!scoreSheetFull) {
+            rollDice();
 
+            rollAgainLoop();
 
-        //roll remaining dice (2)
-        //If use roll, select a field
-        //See current dice
-        //Use roll or roll again?
-        //If roll again, select which dice to keep
-        //roll remaining dice (3)
-        //If use roll, select a field
-        //See current dice
-        //Select a field
+            YahtzeeField fieldChoice = chooseYahtzeeField();
+            int score = scoreDice(fieldChoice);
+            updateScoreSheet(fieldChoice, score);
+        }
 
-        //other things you might want to do..
-        //See fields and scoring formula
-        //see current score sheet
-        //quit game
     }
+
+    //==================================================================================
+    // SCORE SHEET METHODS
+    //==================================================================================
+
+    /*
+    Create blank score sheet
+     */
+    public void createBlankScoreSheet(){
+        for (YahtzeeField field : YahtzeeField.values()){
+            scoreSheet.put(field, null);
+        }
+    }
+
+    /*
+    Check score sheet for completion
+     */
+    public boolean checkScoreSheetForCompletion(){
+
+        for(Map.Entry<YahtzeeField, Integer> entry : scoreSheet.entrySet()){
+            Integer value = entry.getValue();
+            if (value == null){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /*
+    Print score sheet
+     */
+    public void printScoreSheet(){
+        console.println("Scoresheet: " + scoreSheet.toString());
+    }
+
+    //==================================================================================
+    // SCORING ROLL METHODS
+    //==================================================================================
+
+    /*
+    See fields and formula for score
+     */
+
+    public YahtzeeField chooseYahtzeeField() {
+        String userInput = aConsole.getStringInput
+                ("Which field do you want to score?").toUpperCase();
+        return YahtzeeField.ACES;
+    }
+
+    public int scoreDice(YahtzeeField yahtzeeField) {
+        //take in field and dice array and give a score
+        return -1;
+    }
+
+    public void updateScoreSheet(YahtzeeField yahtzeeField, int score) {
+        //Take in field and score and update sheet
+    }
+
+    //==================================================================================
+    // ROLLING DICE METHODS
+    //==================================================================================
 
     /*
     Roll dice
@@ -97,16 +156,23 @@ public class Yahtzee extends DiceGame {
     /*
     Allow the user to roll again up to 2 more times
      */
-    public void rollAgainLoop(boolean rollAgain) {
+    public void rollAgainLoop() {
+
+        String rollAgainString = userInputRollAgain();
+        boolean rollAgain = userInputRollAgainBoolean(rollAgainString);
 
         int rollCounter = 1;
-        while (rollAgain && rollCounter <= 3) {
+        while (rollCounter <= 3 && rollAgain) {
             //select the dice to keep
             Integer[] diceToRollAgain = userInputChooseDice();
             //roll remaining dice
             rollSelectedDiceAgain(diceToRollAgain);
             printDice();
             rollCounter++;
+            if (rollCounter >=3){break;}
+
+            rollAgainString = userInputRollAgain();
+            rollAgain = userInputRollAgainBoolean(rollAgainString);
         }
     }
 
@@ -139,23 +205,5 @@ public class Yahtzee extends DiceGame {
     }
 
 
-
-    public YahtzeeField chooseYahtzeeField() {
-        String userInput = aConsole.getStringInput
-                ("Which field do you want to score?").toUpperCase();
-        return YahtzeeField.ACES;
-    }
-
-    public void scoreDice(YahtzeeField yahtzeeField) {
-        //take in field and dice array and give a score
-    }
-
-    public void updateScoreSheet(YahtzeeField yahtzeeField, int score) {
-        //Take in field and score and update sheet
-    }
-
-    public void displayScoreSheet() {
-        //print score sheet
-    }
 
 }

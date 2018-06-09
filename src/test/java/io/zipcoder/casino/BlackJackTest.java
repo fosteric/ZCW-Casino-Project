@@ -1,11 +1,8 @@
 package io.zipcoder.casino;
 
-
-        import io.zipcoder.casino.Leviathan.Games.GameUtilities.Card;
-        import org.junit.Before;
-        import org.junit.Test;
-
-        import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class BlackJackTest {
 
