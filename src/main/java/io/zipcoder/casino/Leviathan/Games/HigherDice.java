@@ -60,7 +60,7 @@ public class HigherDice extends DiceGame implements Gambling {
             bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
                     "Current chips= " + aPlayer.getTotalChips()+ "\n");
 
-        }while(bet > aPlayer.getTotalChips());
+        }while(bet > aPlayer.getTotalChips() && bet > -1);
 
         return bet;
     }

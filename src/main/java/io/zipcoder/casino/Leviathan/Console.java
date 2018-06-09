@@ -16,6 +16,9 @@ public class Console {
         println(prompt);
         String userInput = scanner.nextLine();
         String userInput2 = userInput.toLowerCase();
+        if(userInput2.equals("leave")){
+            System.exit(0);
+        }
         return userInput2;
     }
 
