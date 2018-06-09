@@ -11,6 +11,7 @@ public class HigherDice extends DiceGame implements Gambling {
     Die aDie = new Die();
     boolean playAgain = true;
 
+
     public HigherDice(Player aPlayer) {
         this.aPlayer = aPlayer;
     }
@@ -32,11 +33,15 @@ public class HigherDice extends DiceGame implements Gambling {
         findWinner(player, croupier, bet);
 
 
-        if((aPlayer.getTotalChips() == 0) || aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")){
-            playAgain= false;
+        if((aPlayer.getTotalChips() == 0) )
+            {
+                aConsole.println("You are out of chips. You may no longer play");
+                playAgain = false;
+            } else if(aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")){
+            playAgain = false;
         }
         }
-    }
+        }
 
     public int findWinner(int player, int croupier, int wageAmount) {
 
