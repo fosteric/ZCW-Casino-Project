@@ -12,5 +12,6 @@ public enum YahtzeeField {
     FULLHOUSE,
     SMSTRAIGHT,
     LGSTRAIGHT,
-    YAHTZEE;
+    YAHTZEE,
+    CHANCE;
 }
