@@ -91,16 +91,12 @@ public class Yahtzee extends DiceGame {
     Get total score
      */
     public int getTotalScore() {
-
         int sumOfUpperSection = getUpperSectionScore();
-
         int bonus = 0;
         if (sumOfUpperSection >= 63){
             bonus = 35;
         }
-
         int sumOfLowerSection = getLowerSectionScore();
-
         return sumOfUpperSection + bonus + sumOfLowerSection;
     }
 
@@ -112,12 +108,9 @@ public class Yahtzee extends DiceGame {
         Iterator it = scoreSheet.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry scoreEntry = (Map.Entry)it.next();
-            if (scoreEntry.getKey() == YahtzeeField.ACES ||
-                    scoreEntry.getKey() == YahtzeeField.TWOS ||
-                    scoreEntry.getKey() == YahtzeeField.THREES ||
-                    scoreEntry.getKey() == YahtzeeField.FOURS ||
-                    scoreEntry.getKey() == YahtzeeField.FIVES ||
-                    scoreEntry.getKey() == YahtzeeField.SIXES){
+            if (scoreEntry.getKey() == YahtzeeField.ACES || scoreEntry.getKey() == YahtzeeField.TWOS ||
+                    scoreEntry.getKey() == YahtzeeField.THREES || scoreEntry.getKey() == YahtzeeField.FOURS ||
+                    scoreEntry.getKey() == YahtzeeField.FIVES || scoreEntry.getKey() == YahtzeeField.SIXES){
                 upperScore += (int)(scoreEntry.getValue());
             }
         }
@@ -132,12 +125,9 @@ public class Yahtzee extends DiceGame {
         Iterator it = scoreSheet.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry scoreEntry = (Map.Entry)it.next();
-            if (scoreEntry.getKey() == YahtzeeField.THREEOFAKIND ||
-                    scoreEntry.getKey() == YahtzeeField.FOUROFAKIND ||
-                    scoreEntry.getKey() == YahtzeeField.FULLHOUSE ||
-                    scoreEntry.getKey() == YahtzeeField.SMSTRAIGHT ||
-                    scoreEntry.getKey() == YahtzeeField.LGSTRAIGHT ||
-                    scoreEntry.getKey() == YahtzeeField.YAHTZEE ||
+            if (scoreEntry.getKey() == YahtzeeField.THREEOFAKIND || scoreEntry.getKey() == YahtzeeField.FOUROFAKIND ||
+                    scoreEntry.getKey() == YahtzeeField.FULLHOUSE || scoreEntry.getKey() == YahtzeeField.SMSTRAIGHT ||
+                    scoreEntry.getKey() == YahtzeeField.LGSTRAIGHT || scoreEntry.getKey() == YahtzeeField.YAHTZEE ||
                     scoreEntry.getKey() == YahtzeeField.CHANCE){
                 lowerScore += (int)(scoreEntry.getValue());
             }
@@ -151,7 +141,6 @@ public class Yahtzee extends DiceGame {
      public void printEndOfGameMessage(int totalScore){
          aConsole.println("Game over!");
          aConsole.println("Your total score is: " + totalScore);
-
          if(aConsole.yesOrNo("Would you like to play again?").equalsIgnoreCase("no")){
              playAgain= false;
          }
@@ -166,16 +155,46 @@ public class Yahtzee extends DiceGame {
      */
     public void printRules(){
         aConsole.println("Roll 5 dice up to 3 times and try to get the highest score");
-
     }
 
     /*
     Choose yahtzee field to score
      */
     public YahtzeeField chooseYahtzeeField() {
-        String userInput = aConsole.getStringInput
-                ("Which field do you want to score?").toUpperCase();
+        boolean inputValid = true;
+        boolean inputIsFree = true;
+        String userInput;
+        do {
+            userInput = aConsole.getStringInput
+                    ("Which field do you want to score?").toUpperCase();
+            inputValid = isYahtzeeField(userInput);
+            inputIsFree = isYahtzeeFieldFree(userInput);
+        } while(!inputValid && !inputIsFree);
         return YahtzeeField.valueOf(userInput);
+    }
+
+    /*
+    Check if yahtzee field is valid
+     */
+    public boolean isYahtzeeField(String userInput) {
+        YahtzeeField[] yahtzeeFields = YahtzeeField.values();
+        for (YahtzeeField aYahtzeeField : yahtzeeFields) {
+            if (aYahtzeeField.name().equals(userInput)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*
+    Check if yahtzee field is free
+     */
+    public boolean isYahtzeeFieldFree(String userInput) {
+        boolean inputIsFree = true;
+        if(scoreSheet.get(YahtzeeField.valueOf(userInput)) != null){
+            inputIsFree = false;
+        }
+        return inputIsFree;
     }
 
     /*
@@ -253,14 +272,12 @@ public class Yahtzee extends DiceGame {
     Check "of a kind" criteria is met
     */
     public boolean ofAKindCriteria(int ofAKind){
-        boolean meetsCriteria = false;
         for (int count : diceValueCounts){
             if (count >= ofAKind){
-                meetsCriteria = true;
-                return meetsCriteria;
+                return true;
             }
         }
-        return meetsCriteria;
+        return false;
     }
 
     /*
@@ -291,7 +308,6 @@ public class Yahtzee extends DiceGame {
     Check Full House criteria is met
     */
     public boolean fullHouseCriteria(){
-        boolean meetsCriteria = false;
         int i = 0;
         for (int count : diceValueCounts){
             if (count >= 2){
@@ -299,9 +315,9 @@ public class Yahtzee extends DiceGame {
             }
         }
         if(i==2){
-            meetsCriteria = true;
+            return true;
         }
-        return meetsCriteria;
+        return false;
     }
 
     /*
@@ -422,13 +438,11 @@ public class Yahtzee extends DiceGame {
     Convert user's choice to roll again to boolean
      */
     public boolean userInputRollAgainBoolean(String userInputString) {
-        boolean rollAgain;
         if (userInputString.equals("YES")) {
-            rollAgain = true;
+            return true;
         } else {
-            rollAgain = false;
+            return false;
         }
-        return rollAgain;
     }
 
     /*
@@ -440,7 +454,7 @@ public class Yahtzee extends DiceGame {
         boolean rollAgain = userInputRollAgainBoolean(rollAgainString);
 
         int rollCounter = 1;
-        while (rollCounter <= 3 && rollAgain) {
+        while (rollAgain) {
             //select the dice to keep
             Integer[] diceToRollAgain = userInputChooseDice();
             //roll remaining dice
@@ -463,14 +477,19 @@ public class Yahtzee extends DiceGame {
         Integer[] diceToRollAgainArray = null;
         ArrayList<Integer> diceToRollAgainList = new ArrayList<Integer>();
         boolean stillSelecting = true;
-        while (stillSelecting) {
-            int positionOfDiceToKeep = aConsole.getIntInput("Enter position of dice to roll again or 0 to perform roll");
-            if (positionOfDiceToKeep == 0) {
+        boolean error = false;
+        do {
+            String positionOfDiceToKeep = aConsole.getStringInput("Enter position of dice to roll again or enter to perform roll");
+            if (Integer.parseInt(positionOfDiceToKeep) < 0 ||
+                    Integer.parseInt(positionOfDiceToKeep) > 5){
+                error = true;
+            }
+            else if (positionOfDiceToKeep.equals("")) {
                 stillSelecting = false;
             } else {
-                diceToRollAgainList.add(positionOfDiceToKeep);
+                diceToRollAgainList.add(Integer.parseInt(positionOfDiceToKeep));
             }
-        }
+        } while (stillSelecting && error );
         diceToRollAgainArray = diceToRollAgainList.toArray(new Integer[diceToRollAgainList.size()]);
         return diceToRollAgainArray;
     }
@@ -483,6 +502,4 @@ public class Yahtzee extends DiceGame {
             dice[diceToRollAgain[i] - 1].rollADice();
         }
     }
-
-
 }
