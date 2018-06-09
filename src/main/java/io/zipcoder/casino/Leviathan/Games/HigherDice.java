@@ -47,11 +47,17 @@ public class HigherDice extends DiceGame implements Gambling {
 
         if (player > croupier) {
             aPlayer.setTotalChips(aPlayer.getTotalChips() + wageAmount);
+            int[] change = {aPlayer.getTally()[0]+1, aPlayer.getTally()[1]};
+            aPlayer.setTally(change);
             aConsole.println("You win! Your current chip total is: "+ aPlayer.getTotalChips());
-
+            aConsole.println("Your current Win/Loss Ratio is "+ aPlayer.getTally()[0]+"-"+ aPlayer.getTally()[1]+"\n");
         } else {
             aPlayer.setTotalChips(aPlayer.getTotalChips() - wageAmount);
+            int[] change = {aPlayer.getTally()[0], aPlayer.getTally()[1]+1};
+            aPlayer.setTally(change);
             aConsole.println("You lose! Your current chip total is: "+ aPlayer.getTotalChips());
+            aConsole.println("Your current Win/Loss Ratio is "+ aPlayer.getTally()[0]+"-"+ aPlayer.getTally()[1]+"\n");
+
         }
     }
 
