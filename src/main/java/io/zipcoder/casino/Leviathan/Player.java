@@ -3,46 +3,46 @@ package io.zipcoder.casino.Leviathan;
 public class Player {
     String name;
     Integer totalChips;
-    int[] tally = {0,0};
+    int[] tally = {0, 0};
     int age;
 
-    public Player(String name, Integer totalChips, int age){
+    public Player(String name, Integer totalChips, int age) {
         this.name = name;
         this.totalChips = totalChips;
         this.age = age;
 
     }
 
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public void setTotalChips(Integer totalChips){
-        this.totalChips = totalChips;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getTotalChips(){
+    public Integer getTotalChips() {
         return this.totalChips;
     }
 
-    public void setAge(Integer age){
-        this.age = age;
+    public void setTotalChips(Integer totalChips) {
+        this.totalChips = totalChips;
     }
 
-    public Integer getAge(){
+    public Integer getAge() {
         return this.age;
     }
 
-    public void setTally(int[] tally){
-        this.tally = tally;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public int [] getTally(){
+    public int[] getTally() {
         return this.tally;
+    }
+
+    public void setTally(int[] tally) {
+        this.tally = tally;
     }
 
 
