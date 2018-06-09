@@ -14,8 +14,6 @@ public class DeckTest {
     /**
      * The test class DieTest.
      */
-
-    private Card card;
     private Deck deck;
 
     /**
@@ -40,7 +38,7 @@ public class DeckTest {
 
 
         //When
-        Object card = deck.draw();
+        Card card = deck.draw();
         Card ten = new Card(Rank.TEN, Suit.SPADES);
         //Result
 
@@ -49,14 +47,14 @@ public class DeckTest {
     }
 
     @Test
-    public void removeTest() {
+    public void removalTest() {
 
-
+        Deck deck = new Deck();
         //When
-
+        Card result = deck.draw();
         //Result
-
-
+        int cardsRemaining = deck.size();
+        assertEquals(result, cardsRemaining);
 
 
     }

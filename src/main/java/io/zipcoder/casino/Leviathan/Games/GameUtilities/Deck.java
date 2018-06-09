@@ -26,5 +26,8 @@ public class Deck {
         return deck.remove(deck.size() - 1);
     }
 
+    public int size() {
+        return deck.size();
+    }
 }
 
