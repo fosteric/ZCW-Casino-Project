@@ -17,6 +17,7 @@ public class Console {
         String userInput = scanner.nextLine();
         String userInput2 = userInput.toLowerCase();
         if(userInput2.equals("leave")){
+            System.out.print("You abandon your chips and sprint out of the casino.");
             System.exit(0);
         }
         return userInput2;

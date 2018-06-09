@@ -63,8 +63,13 @@ public class Table {
             }else if (choice == 6) // Cash Out
                 {
                      play = false;
-                    aConsole.println("Thank you for coming "+ aPlayer.getName());
+                    aConsole.println("Thank you for coming to the Leviathan Casino "+ aPlayer.getName());
+                    aConsole.println("You've cashed out "+ aPlayer.getTotalChips()+ " chips");
+                    aConsole.println("Please come again!");
                 }
+                else{
+                aConsole.println("That is not an option "+ aPlayer.getName()+"... Do better");
+            }
         }
 
     }
