@@ -32,10 +32,10 @@ public class HigherDiceTest {
     @Test
     public void findWinnerTest(){
         //Given
-
+        test.findWinner(10,2,500);
         //When
         int expected=2500;
-        int actual=test.findWinner(10,2,500);
+        int actual=aPlayer.getTotalChips();
 
 
         //Result

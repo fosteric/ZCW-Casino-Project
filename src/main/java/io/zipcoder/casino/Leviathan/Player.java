@@ -37,4 +37,13 @@ public class Player {
         return this.age;
     }
 
+    public void setTally(int[] tally){
+        this.tally = tally;
+    }
+
+    public int [] getTally(){
+        return this.tally;
+    }
+
+
 }
