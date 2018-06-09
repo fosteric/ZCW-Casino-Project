@@ -7,26 +7,33 @@ import java.util.*;
 public class Yahtzee extends DiceGame {
 
     Player aPlayer;
-    Dice diceRoller = new Dice(5);
+    Dice diceRoller;
     Die[] dice;
-    Console console = new Console();
-    Map<YahtzeeField, Integer> scoreSheet = new HashMap<YahtzeeField, Integer>();
+    Console console;
+    Map<YahtzeeField, Integer> scoreSheet;
 
 
     public Yahtzee(Player aPlayer) {
         this.aPlayer = aPlayer;
+        diceRoller = new Dice(5);
+        scoreSheet = new LinkedHashMap<YahtzeeField, Integer>();
         dice = diceRoller.rollAll();
     }
 
     public static void main(String[] args) {
-        Player aPlayer = new Player("eric", 20);
+        Player aPlayer = new Player("eric", 20, 18);
         Yahtzee yahtzee = new Yahtzee(aPlayer);
         yahtzee.playGame();
     }
 
+    //==================================================================================
+    // PLAY GAME METHOD
+    //==================================================================================
+
     public void playGame() {
 
         createBlankScoreSheet();
+        printScoreSheet();
 
         boolean scoreSheetFull = checkScoreSheetForCompletion();
 
@@ -36,7 +43,8 @@ public class Yahtzee extends DiceGame {
             rollAgainLoop();
 
             YahtzeeField fieldChoice = chooseYahtzeeField();
-            scoreDice(fieldChoice);
+            int score = scoreDice(fieldChoice);
+            updateScoreSheet(fieldChoice, score);
         }
 
     }
@@ -90,16 +98,12 @@ public class Yahtzee extends DiceGame {
         return YahtzeeField.ACES;
     }
 
-    public void scoreDice(YahtzeeField yahtzeeField) {
+    public int scoreDice(YahtzeeField yahtzeeField) {
         //take in field and dice array and give a score
     }
 
     public void updateScoreSheet(YahtzeeField yahtzeeField, int score) {
         //Take in field and score and update sheet
-    }
-
-    public void displayScoreSheet() {
-        //print score sheet
     }
 
     //==================================================================================
