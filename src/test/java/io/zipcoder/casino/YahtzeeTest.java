@@ -16,7 +16,7 @@ public class YahtzeeTest {
     Console console = new Console();
 
     public YahtzeeTest(){
-        this.aPlayer = new Player("eric", 20);
+        this.aPlayer = new Player("eric", 20, 18);
         this.yahtzee = new Yahtzee(aPlayer);
     }
 
