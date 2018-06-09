@@ -10,7 +10,7 @@ public class HigherCardsTest {
     @Test
     public void testFindAWinner()
     {
-        Player aplayer =new Player("Aleena",2000);
+        Player aplayer =new Player("Aleena",2000, 21);
         HigherCards higherCards=new HigherCards(aplayer);
 
         int expected=2500;
