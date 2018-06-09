@@ -6,10 +6,6 @@ import java.util.Collections;
 
 public class Deck {
 
-    public void shuffle() {
-        Collections.shuffle(deck);
-    }
-
     private ArrayList<Card> deck;
 
     public Deck() {
@@ -20,6 +16,10 @@ public class Deck {
             }
         }
         shuffle();
+    }
+
+    public void shuffle() {
+        Collections.shuffle(deck);
     }
 
     public Card draw() {
