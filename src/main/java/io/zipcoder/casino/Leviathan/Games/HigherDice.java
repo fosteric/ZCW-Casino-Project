@@ -41,7 +41,7 @@ public class HigherDice extends DiceGame implements Gambling {
         if ((aPlayer.getTotalChips() == 0)) {
             aConsole.println("You are out of chips. You may no longer play");
             playAgain = false;
-        } else if (aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")) {
+        } else if (aConsole.yesOrNo("Would you like to play again?").equalsIgnoreCase("no")) {
             playAgain = false;
         }
     }
