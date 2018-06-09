@@ -41,16 +41,12 @@ public class HigherDice extends DiceGame implements Gambling {
     public int findWinner(int player, int croupier, int wageAmount) {
 
         if (player > croupier) {
-
             aPlayer.setTotalChips(aPlayer.getTotalChips() + wageAmount);
             aConsole.println("You win! Your current chip total is: "+ aPlayer.getTotalChips());
-
         } else {
-
             aPlayer.setTotalChips(aPlayer.getTotalChips() - wageAmount);
             aConsole.println("You lose! Your current chip total is: "+ aPlayer.getTotalChips());
         }
-
         return aPlayer.getTotalChips();
     }
 
@@ -59,7 +55,6 @@ public class HigherDice extends DiceGame implements Gambling {
         do {
             bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
                     "Current chips= " + aPlayer.getTotalChips()+ "\n");
-
         }while(bet > aPlayer.getTotalChips() && bet < 0);
 
         return bet;

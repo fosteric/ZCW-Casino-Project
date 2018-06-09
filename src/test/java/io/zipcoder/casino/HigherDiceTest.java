@@ -10,7 +10,7 @@ import io.zipcoder.casino.Leviathan.*;
  * The test class HigherDiceTest.
  */
 public class HigherDiceTest {
-    Player aPlayer = new Player("Chad", 500);
+    Player aPlayer = new Player("Chad", 2000);
     HigherDice test = new HigherDice(aPlayer);
     /**
      * Default constructor for test class DiceTest
