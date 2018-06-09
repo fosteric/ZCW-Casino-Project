@@ -41,5 +41,20 @@ public class Console {
         return b;
     }
 
+    public String yesOrNo(String prompt){
+        boolean good = false;
+        String correct= "";
+        while(good == false){
+        String answer = getStringInput(prompt);
+        if(answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("no")){
+            good = true;
+            correct = answer;
+        } else{
+            println("what was that? Please say yes or no.");
+        }
+        }
+        return correct;
+    }
+
 
 }

@@ -22,12 +22,6 @@ public class Yahtzee extends DiceGame {
         this.aPlayer = aPlayer;
     }
 
-    public static void main(String[] args) {
-        Player aPlayer = new Player("Eric", 20, 18);
-        Yahtzee yahtzee = new Yahtzee(aPlayer);
-        yahtzee.playGame();
-    }
-
     //==================================================================================
     // PLAY GAME METHOD
     //==================================================================================
@@ -170,6 +164,10 @@ public class Yahtzee extends DiceGame {
     /*
     See fields and formula for score
      */
+    public void printRules(){
+        aConsole.println("Roll 5 dice up to 3 times and try to get the highest score");
+
+    }
 
     /*
     Choose yahtzee field to score
