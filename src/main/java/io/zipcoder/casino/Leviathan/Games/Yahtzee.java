@@ -152,7 +152,7 @@ public class Yahtzee extends DiceGame {
          aConsole.println("Game over!");
          aConsole.println("Your total score is: " + totalScore);
 
-         if(aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")){
+         if(aConsole.yesOrNo("Would you like to play again?").equalsIgnoreCase("no")){
              playAgain= false;
          }
      }
@@ -415,7 +415,7 @@ public class Yahtzee extends DiceGame {
     Ask user if they want to roll again
      */
     public String userInputRollAgain() {
-        return aConsole.getStringInput("Roll again?").toUpperCase();
+        return aConsole.yesOrNo("Roll again?").toUpperCase();
     }
 
     /*
