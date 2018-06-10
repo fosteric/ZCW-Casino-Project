@@ -15,15 +15,16 @@ public enum Rank {
     THREE(3,"3"),
     TWO(2,"2");
 
-
     private int value;
     private String faceValue;
+
 
    private Rank(int value, String faceValue)
    {
        this.value=value;
        this.faceValue=faceValue;
    }
+
 
     public int getValue() {
         return this.value;

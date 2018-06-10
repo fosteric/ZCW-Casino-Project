@@ -36,6 +36,24 @@ public class YahtzeeTest {
         yahtzee.printDice();
     }
 
+    @Test
+    public void isYahtzeeFieldTest(){
+        //Actual
+        boolean actual = yahtzee.isYahtzeeField("ACES");
+        boolean actual2 = yahtzee.isYahtzeeField("ONES");
+        boolean actual3 = yahtzee.isYahtzeeField("TWOS");
+        boolean actual4 = yahtzee.isYahtzeeField("SEVENS");
+        //Expected
+        boolean expected = true;
+        boolean expected2 = false;
+        boolean expected3 = true;
+        boolean expected4 = false;
+        //Test
+        assertEquals(actual, expected);
+        assertEquals(actual2, expected2);
+        assertEquals(actual3, expected3);
+        assertEquals(actual4, expected4);
+    }
 
 
 

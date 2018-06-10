@@ -91,12 +91,16 @@ public class  HigherCards extends CardGame implements Gambling{
     {
 
         if (player > croupier) {
-
+            int[] change = {aPlayer.getTally()[0] + 1, aPlayer.getTally()[1]};
+            aPlayer.setTally(change);
            aPlayer.setTotalChips(aPlayer.getTotalChips()+ wageAmount);
+            aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
         }
         else {
-
+            int[] change = {aPlayer.getTally()[0], aPlayer.getTally()[1] + 1};
+            aPlayer.setTally(change);
             aPlayer.setTotalChips(aPlayer.getTotalChips()- wageAmount);
+            aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
         }
 
 

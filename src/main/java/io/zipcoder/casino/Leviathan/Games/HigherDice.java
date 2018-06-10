@@ -2,12 +2,14 @@ package io.zipcoder.casino.Leviathan.Games;
 
 import io.zipcoder.casino.Leviathan.Console;
 import io.zipcoder.casino.Leviathan.Games.GameUtilities.Die;
+import io.zipcoder.casino.Leviathan.Games.GameUtilities.DrawSingleDie;
 import io.zipcoder.casino.Leviathan.Interfaces.Gambling;
 import io.zipcoder.casino.Leviathan.Player;
 
 
 public class HigherDice extends DiceGame implements Gambling {
     Console aConsole = new Console();
+    DrawSingleDie draw = new DrawSingleDie();
     int bet;
     Player aPlayer;
     Die aDie = new Die();
@@ -28,10 +30,10 @@ public class HigherDice extends DiceGame implements Gambling {
             aConsole.getStringInput("Please roll your die");
             aDie.rollADice();
             int player = aDie.getValue();
-            aConsole.println("You rolled a " + player);
+            aConsole.println("Your Roll:\n"+draw.drawSingleDie(player).toString());
             aDie.rollADice();
             int croupier = aDie.getValue();
-            aConsole.println("The House rolled a " + croupier);
+            aConsole.println("House Roll:\n"+draw.drawSingleDie(croupier).toString());
             findWinner(player, croupier, bet);
             repeat();
         }
@@ -39,7 +41,7 @@ public class HigherDice extends DiceGame implements Gambling {
 
     public void repeat() {
         if ((aPlayer.getTotalChips() == 0)) {
-            aConsole.println("You are out of chips. You may no longer play");
+            aConsole.println("You are out of chips. You may no longer play\n");
             playAgain = false;
         } else if (aConsole.yesOrNo("Would you like to play again?").equalsIgnoreCase("no")) {
             playAgain = false;
