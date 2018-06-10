@@ -54,7 +54,6 @@ public class Table {
                 aGame = new BlackJack(aPlayer);
                 aGame.playGame();
                 played = true;
-                aConsole.println("You Lose\n");
             } else if (choice == 4) //Yahtzee
             {
                 aGame = new Yahtzee(aPlayer);

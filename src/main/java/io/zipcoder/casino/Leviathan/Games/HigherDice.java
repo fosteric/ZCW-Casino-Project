@@ -30,10 +30,10 @@ public class HigherDice extends DiceGame implements Gambling {
             aConsole.getStringInput("Please roll your die");
             aDie.rollADice();
             int player = aDie.getValue();
-            aConsole.println("Your Roll:\n"+draw.drawSingleDie(player).toString());
+            aConsole.println("Your Roll:\n" + draw.drawSingleDie(player).toString());
             aDie.rollADice();
             int croupier = aDie.getValue();
-            aConsole.println("House Roll:\n"+draw.drawSingleDie(croupier).toString());
+            aConsole.println("House Roll:\n" + draw.drawSingleDie(croupier).toString());
             findWinner(player, croupier, bet);
             repeat();
         }
