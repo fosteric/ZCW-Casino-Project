@@ -14,7 +14,8 @@ public class HigherCardsTest {
         HigherCards higherCards=new HigherCards(aplayer);
 
         int expected=2500;
-        int actual=higherCards.findWinner(10,2,500,2000);
+        higherCards.findWinner(10,2,500);
+        int actual=aplayer.getTotalChips();
         Assert.assertEquals(actual,expected);
 
 
