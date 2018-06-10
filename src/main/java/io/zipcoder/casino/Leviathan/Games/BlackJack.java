@@ -19,36 +19,22 @@ public class BlackJack extends CardGame implements Gambling {
         this.aPlayer = aPlayer;
     }
 
-
     int aPlayerScore = Game.playerScore;
     int aHouseScore = Game.houseScore;
 
-    //assuming this to be a random card rank in int
-//    Card aCard = new Card(Rank.ACE,Suit.CLUBS);
-//    Rank aGetRank = aCard.getRank();
-//
     Deck deck = new Deck();
-
-//    Card acard = deck.draw();
-//    Rank rank = acard.getRank();
-//    int player = rank.getValue();
-//    String playervalueString = rank.toString();
-//    Suit suit = acard.getSuit();
-//    String suitString = suit.toString();
 
     String playerDecision;
 
+    boolean win;
 
 ////////////////////////////////////////////////////////////////////////////////////
-
 
     //draws the initial two cards
     public List<Card> drawNewHand() {
         List<Card> hand = new ArrayList<>();
-
         hand.add(deck.draw());
         hand.add(deck.draw());
-
         return hand;
     }
 
@@ -70,23 +56,18 @@ public class BlackJack extends CardGame implements Gambling {
             if (rank.equals(Rank.ACE)) {
                 sum += 0;
             }
-
             if (rank.equals(Rank.ACE)) {
                 countAces += 1;
             }
-
         }
-
         if (countAces == 0) {
             return sum;
         }
-
         if ((sum + 11 + (countAces - 1)) <= 21) {
             return sum + 11 + (countAces - 1);
         } else {
             return sum + countAces;
         }
-
     }
 
     //lets the player know of the starting hand
@@ -99,14 +80,12 @@ public class BlackJack extends CardGame implements Gambling {
         return builder.toString();
     }
 
-    //*** Look this over and figure it out ***
     //lets the player know one of house's starting hand
     public String houseHandToString(List<Card> hand, int cardsToShow) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < cardsToShow; i++) {
             builder.append(hand.get(i).getRank() + " of " + hand.get(i).getSuit() + "\n");
         }
-
         return builder.toString();
     }
 
@@ -117,9 +96,7 @@ public class BlackJack extends CardGame implements Gambling {
         return deck.draw();
     }
 
-
     //Gets the int value of a single drawn card
-    //Figure out how to apply this for just one card instead of going through the list
     public int getSingleCardValue(List<Card> hand) {
         int cardValue = 0;
 
@@ -128,25 +105,16 @@ public class BlackJack extends CardGame implements Gambling {
             int value = rank.getValue();
             cardValue += value;
         }
-
         return cardValue;
-
     }
-
 
     public String drawnCardToString(Card card) {
-
         return card.getRank() + " of " + card.getSuit();
-
     }
-
 
 ////////////////////////////////////////////////////////////////////////////////////
 
     public void playGame() {
-
-        Boolean result;
-
 
         while (playAgain == true) {
 
@@ -154,9 +122,6 @@ public class BlackJack extends CardGame implements Gambling {
                     ", let’s play BlackJack! ***\n");
 
             int wageAmount = wageMoney();
-
-            //Deck deck = new Deck();
-
 
             //draw a fresh hand
             List<Card> playerHand = drawNewHand();
@@ -173,7 +138,6 @@ public class BlackJack extends CardGame implements Gambling {
 
             //display hand total
             aConsole.println("Your current hand value: " + aPlayerScore + "\n");
-
 
             //draw a fresh hand for house
             List<Card> houseHand = drawNewHand();
@@ -199,37 +163,46 @@ public class BlackJack extends CardGame implements Gambling {
                 if (playerDecision.equalsIgnoreCase("Hit")) {
                     playerHit(playerHand);
                 }
-
                 if (playerDecision.equalsIgnoreCase("Stand")) {
+
                     //House start drawing cards
                     houseDraws(houseHand);
                     break;
                 }
             }
+
             //House winning situation
             if (aPlayerScore > 21) {
                 aConsole.println("Bust!");
+                win = false;
+                betChages(bet);
+                aConsole.println("Your current available chips: \n" + aPlayer.getTotalChips());
             }else if ((aHouseScore >= aPlayerScore && aHouseScore < 21) || aHouseScore == 21) {
                 aConsole.println("You lose\n" + "Your score: " + aPlayerScore +
                         "\nHouse score: " + aHouseScore);
                 aConsole.println("\n Dealer's hand: \n" + handToString(houseHand));
+                win = false;
+                betChages(bet);
+                aConsole.println("Your current available chips: \n" + aPlayer.getTotalChips());
             }
 
             //Player winning situation
             else if (aHouseScore < 21) {
                 aConsole.println("You win!");
-
+                win = true;
+                betChages(bet);
+                aConsole.println("Your current available chips: \n" + aPlayer.getTotalChips());
             } else {
                 //aConsole.println("You win!");
                 aConsole.println("You win!\n" + "Your score: " + aPlayerScore +
                         "\nHouse score: " + aHouseScore);
+                win = true;
+                betChages(bet);
+                aConsole.println("Your current available chips: \n" + aPlayer.getTotalChips());
             }
-
-            if ((aPlayer.getTotalChips() == 0) || aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")) {
+            if ((aPlayer.getTotalChips() == 0) || aConsole.yesOrNo("Would you like to play again?").equalsIgnoreCase("no")) {
                 playAgain = false;
-
             }
-
         }
     }
 
@@ -240,7 +213,6 @@ public class BlackJack extends CardGame implements Gambling {
 
         //update player score with card value
         aPlayerScore = getHandTotal(playerHand);
-
 
         //show the newly drawn card
         String newCardString = drawnCardToString(drawSingleCard);
@@ -254,15 +226,10 @@ public class BlackJack extends CardGame implements Gambling {
         while (aPlayerScore > aHouseScore && aHouseScore < 21) {
             //draw a new card
             Card drawSingleCard = drawSingleCard();
-
             houseHand.add(drawSingleCard);
-
-            //get the card value
-            //int cardValue = getSingleCardValue(drawSingleCard);
 
             //update house score with card value
             aHouseScore = getHandTotal(houseHand);
-
 
             //show the newly drawn card
             String newCardString = drawnCardToString(drawSingleCard);
@@ -270,15 +237,12 @@ public class BlackJack extends CardGame implements Gambling {
         }
     }
 
-
+    int bet;
     public int wageMoney() {
-        int bet;
-
+        //int bet;
         totalChips = aPlayer.getTotalChips();
-
         bet = aConsole.getIntInput("Please make your starting bet:\n" +
                 "You currently have: " + aPlayer.getTotalChips() + " chips.");
-
         if (bet > 0 && bet <= totalChips) {
             aConsole.println("Your current bet amount is: " + bet);
             return bet;
@@ -287,53 +251,21 @@ public class BlackJack extends CardGame implements Gambling {
             return wageMoney();
         } if(bet > totalChips) {
             aConsole.println("Insufficient Chips!");
+
             //return wageMoney();
             return wageMoney();
-
         }
-        //return wageMoney();
-        //return betMoney();
         return bet;
     }
 
-
-//    //Player making the starting bet
-//    public int wageMoney() {
-//
-//        totalChips = aPlayer.getTotalChips();
-//
-//        wageAmount = aConsole.getIntInput("Please make your starting bet:");
-//
-//
-//        if (wageAmount > 0 && wageAmount <= totalChips) {
-//            aConsole.println("Your current bet amount is: " + wageAmount);
-//            return wageAmount;
-//        }
-//        if (wageAmount > totalChips) {
-//            aConsole.println("Insufficient Chips!!!!!!!!!!!!!!!!!!");
-//            //Recursion - this runs the method again and asks user to make the starting bet again
-//            //return wageMoney();
-//        }
-//        return wageMoney();
-//    }
-
-
-//    public int findWinner(int player,int house,int betAmount,int totalChips)
-//    {
-//
-//        if (player > house) {
-//
-//            totalChips = totalChips+ betAmount;
-//        }
-//        else {
-//
-//            totalChips = totalChips-betAmount;
-//        }
-//        aPlayer.setTotalChips(totalChips);
-//        return totalChips;
-//    }
-
-
+    public void betChages(int wageAmount){
+        totalChips = aPlayer.getTotalChips();
+        if(win == true){
+            aPlayer.setTotalChips(totalChips + wageAmount);
+        } else{
+            aPlayer.setTotalChips(totalChips - wageAmount);
+        }
+    }
 }
 
 
