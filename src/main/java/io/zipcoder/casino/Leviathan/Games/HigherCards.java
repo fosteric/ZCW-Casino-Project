@@ -79,7 +79,7 @@ public class  HigherCards extends CardGame implements Gambling{
                  aConsole.println(availableChips);
 
              }
-             if((aPlayer.getTotalChips() == 0) || aConsole.getStringInput("Would you like to play again?").equalsIgnoreCase("no")){
+             if((aPlayer.getTotalChips() == 0) || aConsole.yesOrNo("Would you like to play again?").equalsIgnoreCase("no")){
                  playAgain= false;
 
              }
