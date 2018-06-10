@@ -161,39 +161,30 @@ public class Yahtzee extends DiceGame {
     Choose yahtzee field to score
      */
     public YahtzeeField chooseYahtzeeField() {
-        boolean inputValid;
-        boolean inputIsFree = false;
-        String userInput;
-        do {
+        String userInput = aConsole.getStringInput("Which field do you want to score?").toUpperCase();
+        boolean inputIsValid = isValidYahtzeeField(userInput);
+
+        while (!inputIsValid){
+            aConsole.println("please enter valid & free yahtzee field.");
             userInput = aConsole.getStringInput("Which field do you want to score?").toUpperCase();
-            inputValid = isYahtzeeField(userInput);
-            if (inputValid){
-                inputIsFree = isYahtzeeFieldFree(userInput);
-            }
-        } while(!inputValid && !inputIsFree);
+            inputIsValid = isValidYahtzeeField(userInput);
+        }
+
         return YahtzeeField.valueOf(userInput);
     }
 
     /*
-    Check if yahtzee field is valid
+    Check if yahtzee field is valid and free
      */
-    public boolean isYahtzeeField(String userInput) {
+    public boolean isValidYahtzeeField(String userInput) {
         for (YahtzeeField aYahtzeeField : YahtzeeField.values()) {
             if (aYahtzeeField.toString().equals(userInput)) {
-                return true;
+                if(scoreSheet.get(YahtzeeField.valueOf(userInput)) == null){
+                    return true;
+                }
             }
         }
         return false;
-    }
-
-    /*
-    Check if yahtzee field is free
-     */
-    public boolean isYahtzeeFieldFree(String userInput) {
-        if(scoreSheet.get(YahtzeeField.valueOf(userInput)) != null){
-            return false;
-        }
-        return true;
     }
 
     /*

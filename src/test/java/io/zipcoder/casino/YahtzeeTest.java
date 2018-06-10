@@ -37,12 +37,12 @@ public class YahtzeeTest {
     }
 
     @Test
-    public void isYahtzeeFieldTest(){
+    public void isYahtzeeFieldValidTest(){
         //Actual
-        boolean actual = yahtzee.isYahtzeeField("ACES");
-        boolean actual2 = yahtzee.isYahtzeeField("ONES");
-        boolean actual3 = yahtzee.isYahtzeeField("TWOS");
-        boolean actual4 = yahtzee.isYahtzeeField("SEVENS");
+        boolean actual = yahtzee.isValidYahtzeeField("ACES");
+        boolean actual2 = yahtzee.isValidYahtzeeField("ONES");
+        boolean actual3 = yahtzee.isValidYahtzeeField("TWOS");
+        boolean actual4 = yahtzee.isValidYahtzeeField("SEVENS");
         //Expected
         boolean expected = true;
         boolean expected2 = false;
