@@ -6,12 +6,12 @@ import java.util.List;
 
 public class DrawYahtzeeDice {
 
-    public StringBuilder drawYahtzeeDice(int x, int y, int z, int a, int b){
-        DiceBuilder die1 = new DiceBuilder(x-1);
-        DiceBuilder die2 = new DiceBuilder(y-1);
-        DiceBuilder die3 = new DiceBuilder(z-1);
-        DiceBuilder die4 = new DiceBuilder(a-1);
-        DiceBuilder die5 = new DiceBuilder(b-1);
+    public StringBuilder drawYahtzeeDice(int x, int y, int z, int a, int b) {
+        DiceBuilder die1 = new DiceBuilder(x - 1);
+        DiceBuilder die2 = new DiceBuilder(y - 1);
+        DiceBuilder die3 = new DiceBuilder(z - 1);
+        DiceBuilder die4 = new DiceBuilder(a - 1);
+        DiceBuilder die5 = new DiceBuilder(b - 1);
 
         List<Iterator<String>> dice = Arrays.asList(
                 die1.iterator(),
@@ -35,6 +35,6 @@ public class DrawYahtzeeDice {
             sb.append("\r\n");
         }
 
-        return(sb);
+        return (sb);
     }
 }

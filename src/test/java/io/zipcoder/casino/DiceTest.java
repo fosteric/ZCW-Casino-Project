@@ -34,15 +34,25 @@ import org.junit.Test;
         public void rollAllTest(){
             //Given
             test.rollAll();
-            int sum = 0;
 
-            for(int i = 0; i< test.getDice().length; i++){
-                sum+= test.getDice()[i].getValue();
-            }
             //When
+            int actual = test.getDice()[0].getValue();
+            int expected = 3;
 
-            int actual = sum;
+            //Result
+            assertEquals(actual, expected, 3);
+
+        }
+
+        @Test
+        public void sumAllTest(){
+            //Given
+            test.rollAll();
+
+            //When
+            int actual = test.sumAllDice();
             int expected = 17;
+
             //Result
             assertEquals(actual, expected, 13);
 
