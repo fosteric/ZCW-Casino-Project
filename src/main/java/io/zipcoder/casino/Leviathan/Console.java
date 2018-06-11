@@ -55,6 +55,4 @@ public class Console {
         }
         return correct;
     }
-
-
 }
