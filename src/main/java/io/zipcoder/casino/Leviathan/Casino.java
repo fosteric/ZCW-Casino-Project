@@ -2,13 +2,16 @@ package io.zipcoder.casino.Leviathan;
 
 
 public class Casino {
-    Console aConsole = new Console();
-    Player aPlayer;
-    Table aTable;
+    private Console aConsole = new Console();
+    private Player aPlayer;
 
     public void setaPlayer() {
         String name = aConsole.getStringInput("What is your name?");
         aPlayer = new Player(name.substring(0, 1).toUpperCase() + name.substring(1),0,aConsole.getIntInput("What is your age?"));
+        checkAge();
+    }
+
+    private void checkAge(){
         if (aPlayer.getAge() > 20) {
             aPlayer.setTotalChips(aConsole.getIntInput("How many chips would you like to purchase?"));
         } else {
@@ -17,7 +20,7 @@ public class Casino {
     }
 
     public void run() {
-        aTable = new Table(aPlayer);
+        Table aTable = new Table(aPlayer);
         aTable.startGame();
     }
 }
