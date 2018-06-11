@@ -15,6 +15,53 @@ public class HigherDice extends DiceGame implements Gambling {
     Die aDie = new Die();
     boolean playAgain = true;
 
+    public Console getaConsole() {
+        return aConsole;
+    }
+
+    public void setaConsole(Console aConsole) {
+        this.aConsole = aConsole;
+    }
+
+    public DrawSingleDie getDraw() {
+        return draw;
+    }
+
+    public void setDraw(DrawSingleDie draw) {
+        this.draw = draw;
+    }
+
+    public int getBet() {
+        return bet;
+    }
+
+    public void setBet(int bet) {
+        this.bet = bet;
+    }
+
+    public Player getaPlayer() {
+        return aPlayer;
+    }
+
+    public void setaPlayer(Player aPlayer) {
+        this.aPlayer = aPlayer;
+    }
+
+    public Die getaDie() {
+        return aDie;
+    }
+
+    public void setaDie(Die aDie) {
+        this.aDie = aDie;
+    }
+
+    public boolean isPlayAgain() {
+        return playAgain;
+    }
+
+    public void setPlayAgain(boolean playAgain) {
+        this.playAgain = playAgain;
+    }
 
     public HigherDice(Player aPlayer) {
         this.aPlayer = aPlayer;
@@ -27,9 +74,7 @@ public class HigherDice extends DiceGame implements Gambling {
         while (playAgain == true) {
 
             bet = wageMoney();
-            aConsole.getStringInput("Please roll your die");
-            aDie.rollADice();
-            int player = aDie.getValue();
+            int player = playerPhase();
             aConsole.println("Your Roll:\n" + draw.drawSingleDie(player).toString());
             aDie.rollADice();
             int croupier = aDie.getValue();
@@ -71,8 +116,17 @@ public class HigherDice extends DiceGame implements Gambling {
         do {
             bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
                     "Current chips= " + aPlayer.getTotalChips() + "\n");
-        } while (bet > aPlayer.getTotalChips() && bet < 0);
-
+        } while (badBet() == true);
         return bet;
+    }
+
+    public boolean badBet(){
+        return (bet > aPlayer.getTotalChips() || bet < 0);
+    }
+
+    public int playerPhase(){
+        aConsole.getStringInput("Please roll your die");
+        aDie.rollADice();
+        return aDie.getValue();
     }
 }
