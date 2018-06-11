@@ -54,6 +54,17 @@ public class HigherDiceTest {
 
     }
 
+    @Test
+    public void repeatTest(){
+        //Given
+        aPlayer.setTotalChips(0);
+        //When
+        test.repeat();
+        //Result
+        assertFalse(test.isPlayAgain());
+
+    }
+
     /**
      * Tears down the test fixture.
      *
