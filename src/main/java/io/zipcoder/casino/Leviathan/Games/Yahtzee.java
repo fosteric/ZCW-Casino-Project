@@ -38,6 +38,7 @@ public class Yahtzee extends DiceGame {
 
             while (!scoreSheetFull) {
                 rollDice();
+                printDice(getDiceValues(this.dice));
 
                 rollAgainLoop();
 
@@ -398,33 +399,9 @@ public class Yahtzee extends DiceGame {
     /*
     Roll dice
      */
-    public void rollDice() {
+    public Die[] rollDice() {
         dice = diceRoller.rollAll();
-        printDice();
-    }
-
-    /*
-    Display dice
-     */
-    public void printDice() {
-//        StringBuilder currentDice = new StringBuilder();
-//        for (int i = 0; i < dice.length; i++) {
-//            currentDice.append(dice[i].getValue());
-//            if (i < dice.length - 1) {
-//                currentDice.append(", ");
-//            }
-//        }
-//        String currentDiceString = currentDice.toString();
-//        aConsole.println(currentDiceString);
-
-        int[] diceValues = new int[5];
-        for (int i = 0; i < dice.length; i++) {
-            diceValues[i] = (dice[i].getValue());
-        }
-
-        DrawYahtzeeDice diceDrawer = new DrawYahtzeeDice();
-        aConsole.println(diceDrawer.drawYahtzeeDice(diceValues).toString());
-        aConsole.println("    1           2           3           4           5    ");
+        return dice;
     }
 
     /*
@@ -456,10 +433,11 @@ public class Yahtzee extends DiceGame {
         int rollCounter = 1;
         while (rollAgain) {
             //select the dice to keep
-            Integer[] diceToRollAgain = userInputChooseDice();
+            List<Integer> diceToRollAgainList = userInputChooseDice();
+            Integer[] diceToRollAgain = turnUserInputRollAgainToArray(diceToRollAgainList);
             //roll remaining dice
             rollSelectedDiceAgain(diceToRollAgain);
-            printDice();
+            printDice(getDiceValues(this.dice));
             rollCounter++;
             if (rollCounter >= 3) {
                 break;
@@ -473,9 +451,8 @@ public class Yahtzee extends DiceGame {
     /*
     Ask user to select which dice to roll again
      */
-    public Integer[] userInputChooseDice() {
-        Integer[] diceToRollAgainArray = null;
-        ArrayList<Integer> diceToRollAgainList = new ArrayList<Integer>();
+    public List<Integer> userInputChooseDice() {
+        List<Integer> diceToRollAgainList = new ArrayList<Integer>();
         boolean stillSelecting;
         do {
             String positionOfDiceToKeep = aConsole.getStringInput("Enter position of dice to roll again or enter to perform roll");
@@ -484,10 +461,19 @@ public class Yahtzee extends DiceGame {
             } else if (Integer.parseInt(positionOfDiceToKeep) > 0 || Integer.parseInt(positionOfDiceToKeep) < 6){
                 diceToRollAgainList.add(Integer.parseInt(positionOfDiceToKeep));
                 stillSelecting = true;
+                aConsole.println("Enter a number between 1 and 5 or enter to roll");
             } else {
                 stillSelecting = false;
             }
         } while (stillSelecting);
+        return diceToRollAgainList;
+    }
+
+    /*
+    Turn user input of dice to roll again into an array
+     */
+    public Integer[] turnUserInputRollAgainToArray(List<Integer> diceToRollAgainList) {
+        Integer[] diceToRollAgainArray = null;
         diceToRollAgainArray = diceToRollAgainList.toArray(new Integer[diceToRollAgainList.size()]);
         return diceToRollAgainArray;
     }
@@ -499,5 +485,25 @@ public class Yahtzee extends DiceGame {
         for (int i = 0; i < diceToRollAgain.length; i++) {
             dice[diceToRollAgain[i] - 1].rollADice();
         }
+    }
+
+    /*
+    Print dice
+     */
+    public void printDice(int[] diceValues) {
+        DrawYahtzeeDice diceDrawer = new DrawYahtzeeDice();
+        aConsole.println(diceDrawer.drawYahtzeeDice(diceValues).toString());
+        aConsole.println("    1           2           3           4           5    ");
+    }
+
+    /*
+    Create dice values array
+     */
+    public int[] getDiceValues(Die[] dice){
+        int[] diceValues = new int[5];
+        for (int i = 0; i < dice.length; i++) {
+            diceValues[i] = (dice[i].getValue());
+        }
+        return diceValues;
     }
 }
