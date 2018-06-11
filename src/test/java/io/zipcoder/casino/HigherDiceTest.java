@@ -43,6 +43,17 @@ public class HigherDiceTest {
 
     }
 
+    @Test
+    public void badBetTest(){
+        //Given
+        test.setBet(-10);
+        //When
+
+        //Result
+        assertTrue(test.badBet());
+
+    }
+
     /**
      * Tears down the test fixture.
      *
