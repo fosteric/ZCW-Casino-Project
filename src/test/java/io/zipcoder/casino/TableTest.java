@@ -11,7 +11,7 @@ import io.zipcoder.casino.Leviathan.*;
      */
     public class TableTest {
         Player aPlayer = new Player("Chad", 500, 27);
-        Table table = new Table(aPlayer);
+        Table test = new Table(aPlayer);
         /**
          * Default constructor for test class DiceTest
          */

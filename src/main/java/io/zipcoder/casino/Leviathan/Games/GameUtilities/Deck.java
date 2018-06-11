@@ -15,10 +15,15 @@ public class Deck {
                 deck.add(new Card(rank, suit));
             }
         }
-        shuffle();
     }
 
     public void shuffle() {
+        this.deck = new ArrayList<>();
+        for (Rank rank : Rank.values()) {
+            for (Suit suit : Suit.values()) {
+                deck.add(new Card(rank, suit));
+            }
+        }
         Collections.shuffle(deck);
     }
 
