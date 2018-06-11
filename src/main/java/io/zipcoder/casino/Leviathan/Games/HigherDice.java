@@ -19,52 +19,12 @@ public class HigherDice extends DiceGame implements Gambling {
         this.aPlayer = aPlayer;
     }
 
-    public Console getaConsole() {
-        return aConsole;
-    }
-
-    public void setaConsole(Console aConsole) {
-        this.aConsole = aConsole;
-    }
-
-    public DrawSingleDie getDraw() {
-        return draw;
-    }
-
-    public void setDraw(DrawSingleDie draw) {
-        this.draw = draw;
-    }
-
-    public int getBet() {
-        return bet;
-    }
-
     public void setBet(int bet) {
         this.bet = bet;
     }
 
-    public Player getaPlayer() {
-        return aPlayer;
-    }
-
-    public void setaPlayer(Player aPlayer) {
-        this.aPlayer = aPlayer;
-    }
-
-    public Die getaDie() {
-        return aDie;
-    }
-
-    public void setaDie(Die aDie) {
-        this.aDie = aDie;
-    }
-
     public boolean isPlayAgain() {
         return playAgain;
-    }
-
-    public void setPlayAgain(boolean playAgain) {
-        this.playAgain = playAgain;
     }
 
     public void playGame() {

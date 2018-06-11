@@ -10,7 +10,6 @@ public class  HigherCards extends CardGame implements Gambling{
     Deck deck = new Deck();
     Player aPlayer;
     boolean playAgain = true;
-    int wageAmount;
     int bet;
     int player,croupier;
     public void setBet(int bet) {
@@ -31,15 +30,11 @@ public class  HigherCards extends CardGame implements Gambling{
              findWinner(player, croupier, wageAmount);
              if (aPlayer.getTotalChips() > totalChips) {
                  aConsole.println("Congrats ! You Won ");
-                 aConsole.println("Your current available Chips");
-                 String availableChips = aPlayer.getTotalChips().toString();
-                 aConsole.println(availableChips);
              } else {
                  aConsole.println("You Lose");
-                 aConsole.println("Your current available Chips");
-                 String availableChips = aPlayer.getTotalChips().toString();
-                 aConsole.println(availableChips);
              }
+             aConsole.println("Your current available Chips");
+             aConsole.println(aPlayer.getTotalChips().toString());
              repeat();
          }
      }
@@ -92,14 +87,13 @@ public class  HigherCards extends CardGame implements Gambling{
             int[] change = {aPlayer.getTally()[0] + 1, aPlayer.getTally()[1]};
             aPlayer.setTally(change);
            aPlayer.setTotalChips(aPlayer.getTotalChips()+ wageAmount);
-            aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
         }
         else {
             int[] change = {aPlayer.getTally()[0], aPlayer.getTally()[1] + 1};
             aPlayer.setTally(change);
             aPlayer.setTotalChips(aPlayer.getTotalChips()- wageAmount);
-            aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
         }
+        aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
     }
 
     public int wageMoney() {
@@ -107,7 +101,7 @@ public class  HigherCards extends CardGame implements Gambling{
             bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
                     "Current chips= " + aPlayer.getTotalChips());
 
-        }while (badBet() == true);
+        }while (badBet());
         return bet;
     }
 
