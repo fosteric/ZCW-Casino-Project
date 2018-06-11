@@ -19,22 +19,30 @@ public class YahtzeeTest {
     }
 
     @Test
+    public void getDiceValuesTest(){
+//        //Given
+//        Die testDie = new Die();
+//        testDie.rollADice();
+//        Die[] testDieArray = {testDie, testDie, testDie, testDie, testDie};
+//        int testDieValue = testDie.getValue();
+//        int[] expectedArray = {testDieValue, testDieValue, testDieValue, testDieValue, testDieValue};
+//        //Actual
+//        boolean actual = Arrays.equals(actualArray, expectedArray);
+//        //Expected
+//        boolean expected = true;
+//        //Test
+//        assertEquals(expected, actual);
+    }
+
+    @Test
     public void printDiceTest(){
-        //Given
-        int[] diceValuesTest = {1,2,3,4,5};
-        //Actual
-        yahtzee.printDice(diceValuesTest);
-        //Expected
-            //Print dice with values from 1-5;
-        //Test
-            //Check console display for dice values 1-5;
+        yahtzee.printDice();
     }
 
     @Test
     public void rollSelectedDiceAgainTest(){
-
         //Given
-        yahtzee.rollSelectedDiceAgain(1,3,5);
+        yahtzee.rollSelectedDiceAgain(1,2,3,4,5);
     }
 
     @Test
@@ -66,7 +74,7 @@ public class YahtzeeTest {
     @Test
     public void userInputRollAgainBooleanTest(){
         //Actual
-        boolean actual = yahtzee.userInputRollAgainBoolean("YES");
+        boolean actual = yahtzee.userInputYesNoToBoolean("YES");
         //Expected
         boolean expected = true;
         assertEquals(expected, actual);
@@ -93,19 +101,20 @@ public class YahtzeeTest {
     public void isYahtzeeFieldValidTest(){
         //Actual
         boolean actual = yahtzee.isValidYahtzeeField("ACES");
-        boolean actual2 = yahtzee.isValidYahtzeeField("ONES");
-        boolean actual3 = yahtzee.isValidYahtzeeField("TWOS");
-        boolean actual4 = yahtzee.isValidYahtzeeField("SEVENS");
         //Expected
         boolean expected = true;
-        boolean expected2 = false;
-        boolean expected3 = true;
-        boolean expected4 = false;
         //Test
         assertEquals(actual, expected);
-        assertEquals(actual2, expected2);
-        assertEquals(actual3, expected3);
-        assertEquals(actual4, expected4);
+    }
+
+    @Test
+    public void isYahtzeeFieldValidTest2(){
+        //Actual
+        boolean actual = yahtzee.isValidYahtzeeField("ONES");
+        //Expected
+        boolean expected = false;
+        //Test
+        assertEquals(actual, expected);
     }
 
 
