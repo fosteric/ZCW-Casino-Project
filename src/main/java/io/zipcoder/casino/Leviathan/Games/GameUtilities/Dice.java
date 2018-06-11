@@ -27,5 +27,12 @@ public class Dice {
         return dice;
     }
 
+    public int sumAllDice() {
+        int sum = 0;
+        for (int i = 0; i < dice.length; i++) {
+            sum += dice[i].getValue();
+        }
+        return sum;
+    }
 
 }

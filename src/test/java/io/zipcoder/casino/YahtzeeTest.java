@@ -11,13 +11,10 @@ public class YahtzeeTest {
 
     Yahtzee yahtzee;
     Player aPlayer;
-    Dice diceRoller;
-    Die[] dice;
-    Console console = new Console();
 
     public YahtzeeTest(){
-        this.aPlayer = new Player("eric", 20, 18);
-        this.yahtzee = new Yahtzee(aPlayer);
+        aPlayer = new Player("eric", 20, 18);
+        yahtzee = new Yahtzee(aPlayer);
     }
 
     @Test
@@ -37,12 +34,12 @@ public class YahtzeeTest {
     }
 
     @Test
-    public void isYahtzeeFieldTest(){
+    public void isYahtzeeFieldValidTest(){
         //Actual
-        boolean actual = yahtzee.isYahtzeeField("ACES");
-        boolean actual2 = yahtzee.isYahtzeeField("ONES");
-        boolean actual3 = yahtzee.isYahtzeeField("TWOS");
-        boolean actual4 = yahtzee.isYahtzeeField("SEVENS");
+        boolean actual = yahtzee.isValidYahtzeeField("ACES");
+        boolean actual2 = yahtzee.isValidYahtzeeField("ONES");
+        boolean actual3 = yahtzee.isValidYahtzeeField("TWOS");
+        boolean actual4 = yahtzee.isValidYahtzeeField("SEVENS");
         //Expected
         boolean expected = true;
         boolean expected2 = false;
@@ -53,6 +50,11 @@ public class YahtzeeTest {
         assertEquals(actual2, expected2);
         assertEquals(actual3, expected3);
         assertEquals(actual4, expected4);
+    }
+
+    @Test
+    public void printDiceTest(){
+        yahtzee.printDice();
     }
 
 
