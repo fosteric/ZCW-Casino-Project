@@ -12,6 +12,7 @@ public class  HigherCards extends CardGame implements Gambling{
     boolean playAgain = true;
     int bet;
     int player,croupier;
+    int totalChips,wageAmount;
     public void setBet(int bet) {
         this.bet = bet;
     }
@@ -24,20 +25,16 @@ public class  HigherCards extends CardGame implements Gambling{
          while (playAgain) {
              deck.shuffle();
              int wageAmount = wageMoney();
+             aConsole.println("You Got :");
              playerDrawingCard();
+             aConsole.println("House Got :");
              houseDrawingCard();
-             int totalChips = aPlayer.getTotalChips();
-             findWinner(player, croupier, wageAmount);
-             if (aPlayer.getTotalChips() > totalChips) {
-                 aConsole.println("Congrats ! You Won ");
-             } else {
-                 aConsole.println("You Lose");
-             }
-             aConsole.println("Your current available Chips");
-             aConsole.println(aPlayer.getTotalChips().toString());
+             findWinner(wageAmount,player, croupier);
+             aConsole.println("Your current available Chips %d",aPlayer.getTotalChips());
              repeat();
          }
      }
+
      public void repeat()
      {
          if((aPlayer.getTotalChips() == 0) )
@@ -55,44 +52,33 @@ public class  HigherCards extends CardGame implements Gambling{
          Card acard = deck.draw();
          Rank rank = acard.getRank();
          player = rank.getValue();
-         String playervalueString=rank.toString();
-         String playerFace=rank.getFaceValue();
-
          Suit suit = acard.getSuit();
-         String suitSymbol=suit.getsuitSymbol();
-         String suitString = suit.toString();
-
-         aConsole.println("You got :%s of %s",playervalueString,suitString);
-         printCard(suitSymbol,playerFace);
+         printCard(suit.getsuitSymbol(),rank.getFaceValue());
      }
      public void houseDrawingCard()
      {
          Card acard2 = deck.draw();
          Rank rank2 = acard2.getRank();
          croupier = rank2.getValue();
-         String playervalueString2=rank2.toString();
-         String playerFace2=rank2.getFaceValue();
-
          Suit suit2 = acard2.getSuit();
-         String suitString2 = suit2.toString();
-         String suitSymbol2=suit2.getsuitSymbol();
-
-         aConsole.println("House got :%s of %s",playervalueString2,suitString2);
-         printCard(suitSymbol2,playerFace2);
+         printCard(suit2.getsuitSymbol(),rank2.getFaceValue());
      }
 
-    public void findWinner(int player,int croupier,int wageAmount)
+    public void findWinner(int wageAmount,int player,int croupier)
     {
         if (player > croupier) {
+            aConsole.println("Congrats ! You Won ");
             int[] change = {aPlayer.getTally()[0] + 1, aPlayer.getTally()[1]};
             aPlayer.setTally(change);
            aPlayer.setTotalChips(aPlayer.getTotalChips()+ wageAmount);
         }
         else {
+            aConsole.println("You Lose");
             int[] change = {aPlayer.getTally()[0], aPlayer.getTally()[1] + 1};
             aPlayer.setTally(change);
             aPlayer.setTotalChips(aPlayer.getTotalChips()- wageAmount);
         }
+
         aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
     }
 
