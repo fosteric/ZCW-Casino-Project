@@ -109,7 +109,7 @@ public class Table {
                         }
 
                         responseCounter = 7;
-                        aConsole.println("Don't make me call you mom.");
+                        aConsole.println("Don't make me call your mom.");
                         responseCounter++;
                         aConsole.println("4.Yahtzee\n5.Buy more Chips\n6.Cash Out\n\n");
                         choice = aConsole.getIntInput("Enter your choice");
