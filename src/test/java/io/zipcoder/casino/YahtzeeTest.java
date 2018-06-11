@@ -35,44 +35,31 @@ public class YahtzeeTest {
     }
 
     @Test
-    public void printDiceTest(){
-        yahtzee.printDice();
-    }
-
-    @Test
     public void rollSelectedDiceAgainTest(){
         //Given
+
         yahtzee.rollSelectedDiceAgain(1,2,3,4,5);
+        //Actual
+
     }
 
     @Test
-    public void turnUserInputRollAgainToArray(){
+    public void turnTurnRollAgainListToArray(){
         //Given
         List<Integer> testUserInputList = new ArrayList<Integer>();
         testUserInputList.add(1);
         testUserInputList.add(2);
         testUserInputList.add(3);
         //Actual
-        Integer[] actual = yahtzee.turnUserInputRollAgainToArray(testUserInputList);
+        Integer[] actual = yahtzee.turnRollAgainListToArray(testUserInputList);
         //Expected
         Integer[] expected = {1,2,3};
         //Test
         assertEquals(expected,actual);
-
     }
 
     @Test
-    public void userInputChooseDiceTest(){
-
-    }
-
-    @Test
-    public void rollAgainLoopTest(){
-
-    }
-
-    @Test
-    public void userInputRollAgainBooleanTest(){
+    public void userInputRollAgainBooleanTestYes(){
         //Actual
         boolean actual = yahtzee.userInputYesNoToBoolean("YES");
         //Expected
@@ -81,19 +68,11 @@ public class YahtzeeTest {
     }
 
     @Test
-    public void userInputRollAgainTest(){
-
-    }
-
-    @Test
-    public void rollDiceTest(){
-        //Given
-        Die[] dice = yahtzee.rollDice();
+    public void userInputRollAgainBooleanTestNo(){
         //Actual
-        boolean actual = dice instanceof Die[];
+        boolean actual = yahtzee.userInputYesNoToBoolean("NO");
         //Expected
-        boolean expected = true;
-        //Test
+        boolean expected = false;
         assertEquals(expected, actual);
     }
 
@@ -116,9 +95,4 @@ public class YahtzeeTest {
         //Test
         assertEquals(actual, expected);
     }
-
-
-
-
 }
-
