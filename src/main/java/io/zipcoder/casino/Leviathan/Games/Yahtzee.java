@@ -30,7 +30,6 @@ public class Yahtzee extends DiceGame {
     //==================================================================================
     // PLAY GAME METHOD
     //==================================================================================
-
     public void playGame() {
         printWelcomeMessage();
         while (playAgain) {
@@ -55,9 +54,7 @@ public class Yahtzee extends DiceGame {
     // SCORE SHEET METHODS
     //==================================================================================
 
-    /*
-    Check score sheet for completion
-     */
+    //Check score sheet for completion
     private boolean checkScoreSheetForCompletion() {
         for (Map.Entry<YahtzeeField, Integer> entry : scoreSheet.entrySet()) {
             Integer value = entry.getValue();
@@ -68,9 +65,7 @@ public class Yahtzee extends DiceGame {
         return true;
     }
 
-    /*
-    Get total score
-     */
+    //Get total score
     private int getTotalScore() {
         int sumOfUpperSection = getUpperSectionScore();
         int bonus = 0;
@@ -81,9 +76,7 @@ public class Yahtzee extends DiceGame {
         return sumOfUpperSection + bonus + sumOfLowerSection;
     }
 
-    /*
-    Get upper section score
-     */
+    //Get upper section score
     private int getUpperSectionScore() {
         int upperScore = 0;
         Iterator it = scoreSheet.entrySet().iterator();
@@ -98,9 +91,7 @@ public class Yahtzee extends DiceGame {
         return upperScore;
     }
 
-    /*
-    Get lower section score
-     */
+    //Get lower section score
     private int getLowerSectionScore() {
         int lowerScore = 0;
         Iterator it = scoreSheet.entrySet().iterator();
@@ -116,23 +107,18 @@ public class Yahtzee extends DiceGame {
         return lowerScore;
     }
 
-
     //==================================================================================
     // SCORING ROLL METHODS
     //==================================================================================
 
-    /*
-    Score roll
-     */
+    //Score roll
     public void scoreRoll() {
         YahtzeeField fieldChoice = chooseYahtzeeField();
         int score = scoreDice(fieldChoice);
         updateScoreSheet(fieldChoice, score);
     }
 
-    /*
-    Choose yahtzee field to score
-     */
+    //Convert user input into yahtzee field to score
     public YahtzeeField chooseYahtzeeField() {
         String userInput = userInputFieldToScore();
         while (!isValidYahtzeeField(userInput)) {
@@ -142,9 +128,7 @@ public class Yahtzee extends DiceGame {
         return YahtzeeField.valueOf(userInput);
     }
 
-    /*
-    Check if yahtzee field is valid and free
-     */
+    //Check if yahtzee field is valid and free
     public boolean isValidYahtzeeField(String userInput) {
         for (YahtzeeField aYahtzeeField : YahtzeeField.values()) {
             if (aYahtzeeField.toString().equals(userInput)) {
@@ -156,9 +140,7 @@ public class Yahtzee extends DiceGame {
         return false;
     }
 
-    /*
-    Score dice
-    */
+    //Score dice
     private int scoreDice(YahtzeeField yahtzeeField) {
         setDiceValueCounts();
         int score = 0;
@@ -206,16 +188,12 @@ public class Yahtzee extends DiceGame {
         return score;
     }
 
-    /*
-    Score dice "count" fields: aces, twos, threes, fours, fives, or sixes
-    */
+    //Score dice "count" fields: aces, twos, threes, fours, fives, or sixes
     public int scoreCountFields(int countField) {
         return diceValueCounts[countField - 1] * countField;
     }
 
-    /*
-    Check "of a kind" criteria is met: 3/4 of a kind, chance, yahtzee
-    */
+    //Check "of a kind" criteria is met: 3/4 of a kind, chance, yahtzee
     public boolean ofAKindCriteria(int ofAKind) {
         for (int count : diceValueCounts) {
             if (count >= ofAKind) {
@@ -225,23 +203,26 @@ public class Yahtzee extends DiceGame {
         return false;
     }
 
-    /*
-    Score dice 3/4 of a kind, or chance
-    */
+    //Score dice 3/4 of a kind, or chance
     public int scoreOfAKind(boolean meetsOfAKindCriteria) {
         int score = 0;
         if (meetsOfAKindCriteria) {
-            for (Die d : dice) {
-                score += d.getValue();
-            }
+            score = sumOfDice();
         }
         return score;
     }
 
-    /*
-    Score yahtzee
-     */
-    private int scoreYahtzee(boolean meetsOfAKindCriteria) {
+    //Get sum of dice
+    public int sumOfDice(){
+        int sum = 0;
+        for (Die d : dice) {
+            sum += d.getValue();
+        }
+        return sum;
+    }
+
+    //Score yahtzee
+    public int scoreYahtzee(boolean meetsOfAKindCriteria) {
         int score = 0;
         if (meetsOfAKindCriteria) {
             score = 50;
@@ -249,9 +230,7 @@ public class Yahtzee extends DiceGame {
         return score;
     }
 
-    /*
-    Check Full House criteria is met
-    */
+    //Check Full House criteria is met
     public boolean fullHouseCriteria() {
         int i = 0;
         for (int count : diceValueCounts) {
@@ -265,9 +244,7 @@ public class Yahtzee extends DiceGame {
         return false;
     }
 
-    /*
-    Score Full House
-     */
+    //Score Full House
     public int scoreFullHouse(boolean meetsFullHouseCriteria) {
         int score = 0;
         if (meetsFullHouseCriteria) {
@@ -276,9 +253,7 @@ public class Yahtzee extends DiceGame {
         return score;
     }
 
-    /*
-    Check Small Straight criteria is met
-    */
+    //Check Small Straight criteria is met
     public boolean smStraightCriteria() {
         boolean meetsCriteria = false;
         int i = 0;
@@ -293,10 +268,8 @@ public class Yahtzee extends DiceGame {
         return meetsCriteria;
     }
 
-    /*
-    Score SM Straight
-     */
-    private int scoreSmStraight(boolean meetsSmStraightCriteria) {
+    //Score SM Straight
+    public int scoreSmStraight(boolean meetsSmStraightCriteria) {
         int score = 0;
         if (meetsSmStraightCriteria) {
             score = 30;
@@ -304,9 +277,7 @@ public class Yahtzee extends DiceGame {
         return score;
     }
 
-    /*
-    Check Large Straight criteria is met
-    */
+    //Check Large Straight criteria is met
     public boolean lgStraightCriteria() {
         boolean meetsCriteria = false;
         int i = 0;
@@ -321,9 +292,7 @@ public class Yahtzee extends DiceGame {
         return meetsCriteria;
     }
 
-    /*
-    Score LG Straight
-     */
+    //Score LG Straight
     public int scoreLgStraight(boolean meetsLgStraightCriteria) {
         int score = 0;
         if (meetsLgStraightCriteria) {
@@ -336,9 +305,7 @@ public class Yahtzee extends DiceGame {
     // ROLLING DICE METHODS
     //==================================================================================
 
-    /*
-    Allow the user to roll again up to 2 more times
-     */
+    //Allow the user to roll again up to 2 more times
     public void rollAgainLoop() {
         boolean rollAgain = userInputYesNoToBoolean(userInputRollAgain());
         int rollCounter = 1;
@@ -353,18 +320,14 @@ public class Yahtzee extends DiceGame {
         }
     }
 
-    /*
-    Roll again
-     */
+    //Roll again
     public void rollAgain() {
         List<Integer> diceToRollAgainList = userInputChooseDice();
         Integer[] diceToRollAgain = turnRollAgainListToArray(diceToRollAgainList);
         rollSelectedDiceAgain(diceToRollAgain);
     }
 
-    /*
-    Ask user to select which dice to roll again
-     */
+    //Ask user to select which dice to roll again
     public List<Integer> userInputChooseDice() {
         List<Integer> diceToRollAgainList = new ArrayList<Integer>();
         boolean stillSelecting = true;
@@ -383,18 +346,14 @@ public class Yahtzee extends DiceGame {
         return diceToRollAgainList;
     }
 
-    /*
-    Turn user input of dice to roll again into an array
-     */
+    //Turn user input of dice to roll again into an array
     public Integer[] turnRollAgainListToArray(List<Integer> diceToRollAgainList) {
         Integer[] diceToRollAgainArray = null;
         diceToRollAgainArray = diceToRollAgainList.toArray(new Integer[0]);
         return diceToRollAgainArray;
     }
 
-    /*
-    Roll the selected dice again
-     */
+    //Roll the selected dice again
     public void rollSelectedDiceAgain(Integer... diceToRollAgain) {
         for (int i = 0; i < diceToRollAgain.length; i++) {
             dice[diceToRollAgain[i] - 1].rollADice();
@@ -402,51 +361,39 @@ public class Yahtzee extends DiceGame {
     }
 
     //==================================================================================
-    // Get User Input
+    // Console Methods Input
     //==================================================================================
 
-    /*
-    Ask user if they want to roll again
-     */
+    //Ask user if they want to roll again
     public String userInputRollAgain() {
         return aConsole.yesOrNo("Roll again?");
     }
 
-    /*
-    Ask user the position of the dice that they want to roll again
-     */
+    //Ask user the position of the dice that they want to roll again
     public String userInputDiceToRollAgain() {
      return aConsole.getStringInput("Enter position of dice to roll again or enter to perform roll");
     }
 
-    /*
-    Ask user which field they want to score
-     */
+    //Ask user which field they want to score
     public String userInputFieldToScore() {
         return aConsole.getStringInput("Which field do you want to score?").toUpperCase();
     }
 
-    /*
-    Ask user if they want to play again
-     */
+    //Ask user if they want to play again
     public String userInputPlayAgain(){
         return aConsole.yesOrNo("Would you like to play again?");
     }
 
-    /*
-    Convert user input to boolean
-     */
+    //Convert user input to boolean
     public boolean userInputYesNoToBoolean(String userInputString) {
         return (userInputString.toUpperCase().equals("YES"));
     }
 
     //==================================================================================
-    // Print Output
+    // Console Methods Output
     //==================================================================================
 
-    /*
-    Print dice
-     */
+    //Print dice
     public void printDice() {
         DrawYahtzeeDice diceDrawer = new DrawYahtzeeDice();
         setDiceValues();
@@ -454,46 +401,34 @@ public class Yahtzee extends DiceGame {
         aConsole.println("    1           2           3           4           5    ");
     }
 
-    /*
-    Print welcome message
-     */
+    //Print welcome message
     public void printWelcomeMessage() {
         aConsole.println("Welcome to Yahtzee " + aPlayer.getName());
         printRules();
     }
 
-    /*
-    Print rules
-    */
+    //Print rules
     public void printRules() {
         aConsole.println("Roll 5 dice up to 3 times and try to get the highest score");
     }
 
-    /*
-    Print score sheet
-     */
+    //Print score sheet
     private void printScoreSheet() {
         aConsole.println("Scoresheet: " + scoreSheet.toString());
     }
 
-    /*
-    Print end of game stats
-    */
+    //Print end of game stats
     public void printEndOfGameMessage(int totalScore) {
         aConsole.println("Game over!");
         aConsole.println("Your total score is: " + totalScore);
     }
 
-    /*
-    Print error when yahtzee field input is invalid or already full
-     */
+    //Print error when yahtzee field input is invalid or already full
     public void printYahtzeeFieldErrorMessage() {
         aConsole.println("please enter valid & free yahtzee field.");
     }
 
-    /*
-    Print error when user enters dice to roll outside of 1-5 bounds
-     */
+    //Print error when user enters dice to roll outside of 1-5 bounds
     public void printDicePositionErrorMessage() {
         aConsole.println("Enter a number between 1 and 5 or enter to roll");
     }
@@ -502,24 +437,12 @@ public class Yahtzee extends DiceGame {
     // Getters and Setters (and Re-setters)
     //==================================================================================
 
-    /*
-    Set dice (roll all dice)
-     */
+    //Set dice (roll all dice)
     public void rollDice() {
         dice = diceRoller.rollAll();
     }
 
-    /*
-    Get dice
-     */
-    public Die[] getDice(){
-        return this.dice;
-    }
-
-
-    /*
-    Set value count array
-    */
+    //Set value count array
     public void setDiceValueCounts() {
         resetDiceValueCounts();
         for (Die d : dice) {
@@ -527,57 +450,38 @@ public class Yahtzee extends DiceGame {
         }
     }
 
-    /*
-    Reset count of each value in dice
-    */
+    //Reset count of each value in dice
     public void resetDiceValueCounts() {
         for (int i = 0; i < diceValueCounts.length; i++) {
             diceValueCounts[i] = 0;
         }
     }
 
-    /*
-    Get value count array
-     */
+    //Get value count array
     public int[] getDiceValueCounts() {
         return this.diceValueCounts;
     }
 
-    /*
-    Set dice values array
-     */
+    //Set dice values array
     public void setDiceValues() {
         for (int i = 0; i < dice.length; i++) {
             diceValues[i] = (dice[i].getValue());
         }
     }
 
-    /*
-    Get dice values array
-     */
-    public int[] getDiceValues() {
-        return this.diceValues;
-    }
-
-    /*
-    Set score sheet with scored value
-    */
+    //Set score sheet with scored value
     public void updateScoreSheet(YahtzeeField yahtzeeField, int score) {
         scoreSheet.put(yahtzeeField, score);
     }
 
-    /*
-    Reset score sheet to blank
-     */
+    //Reset score sheet to blank
     public void createBlankScoreSheet() {
         for (YahtzeeField field : YahtzeeField.values()) {
             scoreSheet.put(field, null);
         }
     }
 
-    /*
-    Get score sheet
-     */
+    //Get score sheet
     public Map<YahtzeeField, Integer> getScoreSheet() {
         return this.scoreSheet;
     }
