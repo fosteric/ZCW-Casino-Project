@@ -19,15 +19,7 @@ public class  HigherCards extends CardGame implements Gambling{
      public void playGame() {
          aConsole.print("Welcome to HigherCards!\nWe both will draw a card, and the higher card wins the wager.\nThe House wins on ties\n");
          while (playAgain) {
-             /*aConsole.println("\u2660");//spades
-             aConsole.println("\u2665");//heart
-             aConsole.println("\u2666");//diamond
-             aConsole.println("\u2663");//suit
-             String heart="\u2660";
-             int k=6;
-             aConsole.println(heart);*/
              int wageAmount = wageMoney();
-
              Deck deck = new Deck();
 
              Card acard = deck.draw();
@@ -41,11 +33,6 @@ public class  HigherCards extends CardGame implements Gambling{
              String suitString = suit.toString();
 
              aConsole.println("You got :%s of %s",playervalueString,suitString);
-             /*aConsole.println("Your suit is :");
-             aConsole.print(suitString);
-             aConsole.println("\nYour rank is :");
-             String rankValue = rank.toString();
-             aConsole.println(rankValue);*/
              printCard(suitSymbol,playerFace);
 
              Card acard2 = deck.draw();
@@ -58,11 +45,6 @@ public class  HigherCards extends CardGame implements Gambling{
              String suitString2 = suit2.toString();
              String suitSymbol2=suit2.getsuitSymbol();
              aConsole.println("House got :%s of %s",playervalueString2,suitString2);
-             /*aConsole.println("\n\nHouse suit is :");
-             aConsole.print(suitString2);
-             aConsole.println("\nHouse rank is :");
-             String rankValue2 = rank2.toString();
-             aConsole.println(rankValue2);*/
              printCard(suitSymbol2,playerFace2);
 
              int totalChips = aPlayer.getTotalChips();
@@ -77,19 +59,14 @@ public class  HigherCards extends CardGame implements Gambling{
                  aConsole.println("Your current available Chips");
                  String availableChips = aPlayer.getTotalChips().toString();
                  aConsole.println(availableChips);
-
              }
              if((aPlayer.getTotalChips() == 0) || aConsole.yesOrNo("Would you like to play again?").equalsIgnoreCase("no")){
                  playAgain= false;
-
              }
-
-
          }
      }
     public void findWinner(int player,int croupier,int wageAmount)
     {
-
         if (player > croupier) {
             int[] change = {aPlayer.getTally()[0] + 1, aPlayer.getTally()[1]};
             aPlayer.setTally(change);
@@ -102,10 +79,7 @@ public class  HigherCards extends CardGame implements Gambling{
             aPlayer.setTotalChips(aPlayer.getTotalChips()- wageAmount);
             aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
         }
-
-
     }
-
 
     public int wageMoney() {
         int bet;
@@ -130,7 +104,5 @@ public class  HigherCards extends CardGame implements Gambling{
         aConsole.println("| %s     %s |",suitSymbol,playerFace);
         aConsole.println(" ---------");
     }
-
-
 }
 
