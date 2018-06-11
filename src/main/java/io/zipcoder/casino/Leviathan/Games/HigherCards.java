@@ -5,19 +5,22 @@ import io.zipcoder.casino.Leviathan.Interfaces.*;
 import io.zipcoder.casino.Leviathan.*;
 
 public class  HigherCards extends CardGame implements Gambling{
+
     Console aConsole=new Console();
+    Deck deck = new Deck();
     Player aPlayer;
     boolean playAgain = true;
-    Deck deck = new Deck();
     int wageAmount;
-
+    int bet;
     int player,croupier;
+    public void setBet(int bet) {
+        this.bet = bet;
+    }
 
     public HigherCards(Player aPlayer){
         this.aPlayer = aPlayer;
     }
-
-     public void playGame() {
+    public void playGame() {
          aConsole.print("Welcome to HigherCards!\nWe both will draw a card, and the higher card wins the wager.\nThe House wins on ties\n");
          while (playAgain) {
              deck.shuffle();
@@ -54,9 +57,7 @@ public class  HigherCards extends CardGame implements Gambling{
      }
      public void playerDrawingCard()
      {
-
          Card acard = deck.draw();
-
          Rank rank = acard.getRank();
          player = rank.getValue();
          String playervalueString=rank.toString();
@@ -68,7 +69,6 @@ public class  HigherCards extends CardGame implements Gambling{
 
          aConsole.println("You got :%s of %s",playervalueString,suitString);
          printCard(suitSymbol,playerFace);
-
      }
      public void houseDrawingCard()
      {
@@ -84,9 +84,7 @@ public class  HigherCards extends CardGame implements Gambling{
 
          aConsole.println("House got :%s of %s",playervalueString2,suitString2);
          printCard(suitSymbol2,playerFace2);
-
      }
-
 
     public void findWinner(int player,int croupier,int wageAmount)
     {
@@ -105,18 +103,19 @@ public class  HigherCards extends CardGame implements Gambling{
     }
 
     public int wageMoney() {
-        int bet;
-
         do {
             bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
                     "Current chips= " + aPlayer.getTotalChips());
 
-        }while(bet > aPlayer.getTotalChips());
-
+        }while (badBet() == true);
         return bet;
     }
 
-   public void printCard(String suitSymbol,String playerFace)
+    public boolean badBet(){
+        return (bet > aPlayer.getTotalChips() || bet < 0);
+    }
+
+    public void printCard(String suitSymbol,String playerFace)
     {
         aConsole.println(" ---------");
         aConsole.println("| %s     %s |",playerFace,suitSymbol);
