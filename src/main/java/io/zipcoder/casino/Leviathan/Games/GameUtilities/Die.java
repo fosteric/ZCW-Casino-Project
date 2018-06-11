@@ -8,7 +8,6 @@ public class Die {
 
     public int getValue() {
         return value;
-
     }
 
     public void rollADice() {
