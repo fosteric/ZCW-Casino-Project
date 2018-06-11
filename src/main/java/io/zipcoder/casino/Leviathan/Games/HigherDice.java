@@ -8,12 +8,12 @@ import io.zipcoder.casino.Leviathan.Player;
 
 
 public class HigherDice extends DiceGame implements Gambling {
-    Console aConsole = new Console();
-    DrawSingleDie draw = new DrawSingleDie();
-    int bet;
-    Player aPlayer;
-    Die aDie = new Die();
-    boolean playAgain = true;
+    private Console aConsole = new Console();
+    private DrawSingleDie draw = new DrawSingleDie();
+    private int bet;
+    private Player aPlayer;
+    private Die aDie = new Die();
+    private boolean playAgain = true;
 
     public HigherDice(Player aPlayer) {
         this.aPlayer = aPlayer;
@@ -69,7 +69,7 @@ public class HigherDice extends DiceGame implements Gambling {
 
     public void playGame() {
         aConsole.print("Welcome to HigherDice!\nWe will both roll a die, and the higher number wins the wager.\nThe House wins on ties\n");
-        while (playAgain == true) {
+        while (playAgain) {
             findWinner(wageMoney(), playerPhase(), housePhase());
             repeat();
         }
@@ -84,7 +84,7 @@ public class HigherDice extends DiceGame implements Gambling {
         }
     }
 
-    public void findWinner(int wageAmount,int player, int croupier) {
+    public void findWinner(int wageAmount, int player, int croupier) {
 
         if (player > croupier) {
             aPlayer.setTotalChips(aPlayer.getTotalChips() + wageAmount);
@@ -101,11 +101,10 @@ public class HigherDice extends DiceGame implements Gambling {
     }
 
     public int wageMoney() {
-
         do {
             bet = aConsole.getIntInput("How much would you like to bet? You can only bet what you currently have.\n" +
                     "Current chips= " + aPlayer.getTotalChips() + "\n");
-        } while (badBet() == true);
+        } while (badBet());
         return bet;
     }
 
@@ -113,14 +112,14 @@ public class HigherDice extends DiceGame implements Gambling {
         return (bet > aPlayer.getTotalChips() || bet < 0);
     }
 
-    public int playerPhase() {
+    private int playerPhase() {
         aConsole.getStringInput("Please roll your die");
         aDie.rollADice();
         aConsole.println("Your Roll:\n" + draw.drawSingleDie(aDie.getValue()).toString());
         return aDie.getValue();
     }
 
-    public int housePhase() {
+    private int housePhase() {
         aDie.rollADice();
         aConsole.println("House Roll:\n" + draw.drawSingleDie(aDie.getValue()).toString());
         return aDie.getValue();
