@@ -407,14 +407,24 @@ public class Yahtzee extends DiceGame {
     Display dice
      */
     public void printDice() {
-        StringBuilder currentDice = new StringBuilder();
+//        StringBuilder currentDice = new StringBuilder();
+//        for (int i = 0; i < dice.length; i++) {
+//            currentDice.append(dice[i].getValue());
+//            if (i < dice.length - 1) {
+//                currentDice.append(", ");
+//            }
+//        }
+//        String currentDiceString = currentDice.toString();
+//        aConsole.println(currentDiceString);
+
+        int[] diceValues = new int[5];
         for (int i = 0; i < dice.length; i++) {
-            currentDice.append(dice[i].getValue());
-            if (i < dice.length - 1) {
-                currentDice.append(", ");
-            }
+            diceValues[i] = (dice[i].getValue());
         }
-        aConsole.println("current roll: " + currentDice.toString());
+
+        DrawYahtzeeDice diceDrawer = new DrawYahtzeeDice();
+        aConsole.println(diceDrawer.drawYahtzeeDice(diceValues).toString());
+        aConsole.println("    1           2           3           4           5    ");
     }
 
     /*
