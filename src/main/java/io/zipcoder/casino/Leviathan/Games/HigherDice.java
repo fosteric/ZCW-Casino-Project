@@ -15,6 +15,10 @@ public class HigherDice extends DiceGame implements Gambling {
     Die aDie = new Die();
     boolean playAgain = true;
 
+    public HigherDice(Player aPlayer) {
+        this.aPlayer = aPlayer;
+    }
+
     public Console getaConsole() {
         return aConsole;
     }
@@ -63,23 +67,10 @@ public class HigherDice extends DiceGame implements Gambling {
         this.playAgain = playAgain;
     }
 
-    public HigherDice(Player aPlayer) {
-        this.aPlayer = aPlayer;
-    }
-
-
     public void playGame() {
         aConsole.print("Welcome to HigherDice!\nWe will both roll a die, and the higher number wins the wager.\nThe House wins on ties\n");
-
         while (playAgain == true) {
-
-            bet = wageMoney();
-            int player = playerPhase();
-            aConsole.println("Your Roll:\n" + draw.drawSingleDie(player).toString());
-            aDie.rollADice();
-            int croupier = aDie.getValue();
-            aConsole.println("House Roll:\n" + draw.drawSingleDie(croupier).toString());
-            findWinner(player, croupier, bet);
+            findWinner(wageMoney(), playerPhase(), housePhase());
             repeat();
         }
     }
@@ -93,22 +84,20 @@ public class HigherDice extends DiceGame implements Gambling {
         }
     }
 
-    public void findWinner(int player, int croupier, int wageAmount) {
+    public void findWinner(int wageAmount,int player, int croupier) {
 
         if (player > croupier) {
             aPlayer.setTotalChips(aPlayer.getTotalChips() + wageAmount);
             int[] change = {aPlayer.getTally()[0] + 1, aPlayer.getTally()[1]};
             aPlayer.setTally(change);
             aConsole.println("You win! Your current chip total is: " + aPlayer.getTotalChips());
-            aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
         } else {
             aPlayer.setTotalChips(aPlayer.getTotalChips() - wageAmount);
             int[] change = {aPlayer.getTally()[0], aPlayer.getTally()[1] + 1};
             aPlayer.setTally(change);
             aConsole.println("You lose! Your current chip total is: " + aPlayer.getTotalChips());
-            aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
-
         }
+        aConsole.println("Your current Win/Loss Ratio is " + aPlayer.getTally()[0] + "-" + aPlayer.getTally()[1] + "\n");
     }
 
     public int wageMoney() {
@@ -120,13 +109,20 @@ public class HigherDice extends DiceGame implements Gambling {
         return bet;
     }
 
-    public boolean badBet(){
+    public boolean badBet() {
         return (bet > aPlayer.getTotalChips() || bet < 0);
     }
 
-    public int playerPhase(){
+    public int playerPhase() {
         aConsole.getStringInput("Please roll your die");
         aDie.rollADice();
+        aConsole.println("Your Roll:\n" + draw.drawSingleDie(aDie.getValue()).toString());
+        return aDie.getValue();
+    }
+
+    public int housePhase() {
+        aDie.rollADice();
+        aConsole.println("House Roll:\n" + draw.drawSingleDie(aDie.getValue()).toString());
         return aDie.getValue();
     }
 }
